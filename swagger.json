@@ -15,9 +15,9 @@
   "paths" : {
     "/PhonebookLogin.php" : {
       "post" : {
-        "summary" : "Logs in to phonebookpro app",
+        "summary" : "Logs in to Phonebookpro app",
         "operationId" : "doLogin",
-        "description" : "Logs in to phonebookpro app",
+        "description" : "Logs in to Phonebookpro app",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -43,18 +43,18 @@
     },
     "/PhonebookAdd.php" : {
       "post" : {
-        "tags" : [ "Users" ],
-        "summary" : "Adds a new user",
-        "operationId" : "addUser",
-        "description" : "Adds a new user to the phonebookpro app database",
+        "tags" : [ "Contact" ],
+        "summary" : "Adds a new contact",
+        "operationId" : "addContact",
+        "description" : "Adds a new contact to the Phonebookpro app database",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
-          "name" : "userItem",
-          "description" : "User",
+          "name" : "contactItem",
+          "description" : "Contact",
           "schema" : {
-            "$ref" : "#/definitions/User"
+            "$ref" : "#/definitions/Contact"
           }
         } ],
         "responses" : {
@@ -69,15 +69,15 @@
     },
     "/PhonebookSearch.php" : {
       "post" : {
-        "summary" : "Searches for user",
-        "operationId" : "searchUser",
-        "description" : "Search for a user in the phonebookpro app database",
+        "summary" : "Searches for contact",
+        "operationId" : "searchContact",
+        "description" : "Search for a contact in the Phonebookpro app database",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
-          "name" : "userItem",
-          "description" : "User",
+          "name" : "contactItem",
+          "description" : "Contact",
           "schema" : {
             "$ref" : "#/definitions/Search"
           }
@@ -94,18 +94,18 @@
     },
     "/PhonebookRemove.php" : {
       "post" : {
-        "tags" : [ "Users" ],
-        "summary" : "Removes a user",
-        "operationId" : "removeUser",
-        "description" : "Removes a user in the phonebookpro app database",
+        "tags" : [ "Contact" ],
+        "summary" : "Removes a contact",
+        "operationId" : "removeContact",
+        "description" : "Removes a contact in the phonebookpro app database",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
-          "name" : "userItem",
-          "description" : "User",
+          "name" : "contactItem",
+          "description" : "Contact",
           "schema" : {
-            "$ref" : "#/definitions/User"
+            "$ref" : "#/definitions/Contact"
           }
         } ],
         "responses" : {
@@ -134,27 +134,27 @@
         }
       }
     },
-    "User" : {
+    "Contact" : {
       "type" : "object",
-      "required" : [ "userID", "firstName", "lastName", "phoneNumber", "email" ],
+      "required" : [ "UserID", "FirstName", "LastName", "PhoneNumber", "Email" ],
       "properties" : {
-        "firstName" : {
+        "FirstName" : {
           "type" : "string",
           "example" : "John"
         },
-        "lastName" : {
+        "LastName" : {
           "type" : "string",
           "example" : "Doe"
         },
-        "phoneNumber" : {
+        "PhoneNumber" : {
           "type" : "string",
           "example" : "4078492444"
         },
-        "email" : {
+        "Email" : {
           "type" : "string",
           "example" : "jdoe@yahoo.com"
         },
-        "userID" : {
+        "UserID" : {
           "type" : "integer",
           "example" : 1
         }
@@ -162,13 +162,13 @@
     },
     "Search" : {
       "type" : "object",
-      "required" : [ "userID", "search" ],
+      "required" : [ "UserID", "Search" ],
       "properties" : {
-        "userID" : {
+        "UserID" : {
           "type" : "string",
           "example" : "1"
         },
-        "search" : {
+        "Search" : {
           "type" : "string",
           "example" : "Susie"
         }
