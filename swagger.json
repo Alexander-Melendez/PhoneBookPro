@@ -41,7 +41,7 @@
         }
       }
     },
-    "/PhonebookRegister.php" : {
+    "/PhonebookAdd.php" : {
       "post" : {
         "tags" : [ "Users" ],
         "summary" : "Adds a new user",
@@ -72,6 +72,31 @@
         "summary" : "Searches for user",
         "operationId" : "searchUser",
         "description" : "Search for a user in the phonebookpro app database",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "userItem",
+          "description" : "User",
+          "schema" : {
+            "$ref" : "#/definitions/Search"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "404" : {
+            "description" : "URL Not Found"
+          }
+        }
+      }
+    },
+    "/PhonebookRemove.php" : {
+      "post" : {
+        "summary" : "Removes a user",
+        "operationId" : "removeUser",
+        "description" : "Removes a user in the phonebookpro app database",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
