@@ -1,8 +1,23 @@
 const urlBase = 'http://phonebookpro.me/API';
 const extension = 'php';
 
+let userId = 0;
 let firstName = "";
 let lastName = "";
+let search = "";
+
+function checkUser()
+{
+	if (localStorage.getItem("userId") == null)
+	{
+		alert("Please sign back in.");
+		window.location.href = "index.html";
+	}
+	else
+	{
+		userId = localStorage.getItem("userId");
+	}
+}
 
 function addColor()
 {
@@ -35,9 +50,20 @@ function addColor()
 	
 }
 
+var input = document.getElementById("send");
+input.addEventListener("keydown", function (e) {
+	if (e.code === "Enter") {
+		searchDatabase(input.value)
+	}
+});
+
 function searchUser()
 {
-	let search = document.getElementById("send").value;
+	searchDatabase(document.getElementById("send").value);
+}
+
+function searchDatabase(search)
+{
 	document.getElementById("result").innerHTML = "";
 	
 	let list = "";
@@ -77,3 +103,32 @@ function searchUser()
 		document.getElementById("colorSearchResult").innerHTML = err.message;
 	}
 }
+
+function test()
+{
+	alert("poop");
+}
+
+function openPopup(row)
+{
+	let popup = document.getElementById("popup");
+	popup.style.display = "flex";
+	updateData();
+
+	function updateData()
+	{
+		console.log(typeof row);
+
+		var firstName = row.querySelector(".first-name").innerHTML;
+		var lastName = row.querySelector("last-name").innerHTML;
+		var phoneNumber = row.querySelector("phone-number").innerHTML;
+		var email = row.querySelector("email").innerHTML;
+
+		alert(firstName);
+
+		document.getElementById("first-name").innerHTML = firstName.innerHTML;
+	}
+}
+
+
+

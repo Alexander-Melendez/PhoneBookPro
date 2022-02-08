@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-16">
+	<title>Phonebook</title>
+	<link href="popup.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onload="loadAssets()">
+
+  <div class="popup">
+    <div class="align-right">
+      <div class="exit">
+        <button>❌</button>
+      </div>
+    </div>
+
+    <div class="align-left">
+      <div class="contact-info">
+        <div class="info">
+          <h4>First Name:</h4>
+          <p class="editable" contenteditable="true" id="first-name">Susie</p>
+        </div>
+        <div class="info">
+          <h4>Last Name:</h4>
+          <p class="editable" contenteditable="true" id="last-name">Long</p>
+        </div>
+        <div class="info">
+          <h4>Phone Number:</h4>
+          <p class="editable" contenteditable="true" id="phone-number">111-111-1111</p>
+        </div>
+        <div class="info">
+          <h4>Email:</h4>
+          <p class="editable" contenteditable="true" id="email">susielong@gmail.com</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="alter">
+      <button onclick="remove()">🗑️</button>
+    </div>
+  </div>
+
+
+</body>
+
+<script type="text/javascript" src="js/popup.js"></script>
+</html>
