@@ -42,42 +42,55 @@ function update()
 
 function remove()
 {
-  alert("poop");
+	let tmp = {FirstName:firstName,LastName:lastName,PhoneNumber:phoneNumber,Email:email,UserID:userId};
 
-  // api references go here.
-
-  searchUser();
-}
-
-function add()
-{
-  closePopup();
-	let newColor = document.getElementById("colorText").value;
-	document.getElementById("colorAddResult").innerHTML = "";
-
-	let tmp = {color:newColor,userId,userId};
 	let jsonPayload = JSON.stringify( tmp );
-
-	let url = urlBase + '/AddColor.' + extension;
 	
+	let url = urlBase + '/PhonebookRemove.' + extension;
+
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try
 	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				document.getElementById("colorAddResult").innerHTML = "Color has been added";
-			}
-		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		//document.getElementById("colorAddResult").innerHTML = err.message;
+		document.getElementById("loginResult").innerHTML = err.message;
 	}
+
+  closePopup();
+
+  searchUser();
+}
+
+function add()
+{	
+  firstName = document.getElementById("first-name").innerHTML;
+	lastName = document.getElementById("last-name").innerHTML;
+  phoneNumber = document.getElementById("phone-number").innerHTML;
+	email = document.getElementById("email").innerHTML;
+
+	let tmp = {FirstName:firstName,LastName:lastName,PhoneNumber:phoneNumber,Email:email,UserID:userId};
+
+	let jsonPayload = JSON.stringify( tmp );
+	
+	let url = urlBase + '/PhonebookAdd.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("loginResult").innerHTML = err.message;
+	}
+
+  closePopup();
 }
 
 function closePopup()

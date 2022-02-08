@@ -22,7 +22,7 @@ function checkUser()
 var input = document.getElementById("send");
 input.addEventListener("keydown", function (e) {
 	if (e.code === "Enter") {
-		searchDatabase(input.value)
+		searchDatabase(input.value);
 	}
 });
 
@@ -33,11 +33,11 @@ function searchUser()
 
 function searchDatabase(search)
 {
-	document.getElementById("result").innerHTML = "";
+	document.getElementById("contacts").innerHTML = "";
 	
-	let list = "";
+	let list = "";	
 
-	let tmp = {search:search,userId:userId};
+	let tmp = {UserID:userId,search:search};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/PhonebookSearch.' + extension;
@@ -53,6 +53,8 @@ function searchDatabase(search)
 			{
 				let json = JSON.parse( xhr.responseText );
 				
+				alert(xhr.responseText);
+
 				for( let i=0; i<json.results.length; i++ )
 				{
 					list += json.results[i];

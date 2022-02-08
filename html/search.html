@@ -7,7 +7,7 @@
 	<link href="popup.css" rel="stylesheet" type="text/css">
 </head>
 
-<body onload="">
+<body onload="checkUser()">
 	<div id="popup">
 		<div class="center">
 			<div class="align-right">
@@ -70,7 +70,7 @@
 		<div class="searchbar">
 			<button class="add-button" onclick="openPopup(null)">➕</button>
 			<input id="send" class="search-text" type="text" placeholder="Search.."></input>
-			<button class="search-button" onclick="test(this.innerHTML)">🔎</button>
+			<button class="search-button" onclick="searchUser()">🔎</button>
 		</div>
 
 		<div class="data">
@@ -81,35 +81,36 @@
 				<div class="col"><button onclick="test()">Email ▲</button></div>
 			</div>
 
-			<div class="row" onclick="openPopup(this.innerHTML)">
-				<div class="col first-name">Susie</div>
-				<div class="col last-name">Long</div>
-				<div class="col phone-number">111-111-1111</div>
-				<div class="col email">susielong@gmail.com</div>
-			</div>
+			<div id="contacts">
+				<div class="row" onclick="openPopup(this.innerHTML)">
+					<div class="col first-name">Susie</div>
+					<div class="col last-name">Long</div>
+					<div class="col phone-number">111-111-1111</div>
+					<div class="col email">susielong@gmail.com</div>
+				</div>
 
-			<div class="row" onclick="openPopup(this.innerHTML)">
-				<div class="col first-name">Tyler</div>
-				<div class="col last-name">Riley</div>
-				<div class="col phone-number">813-215-9110</div>
-				<div class="col email">iwatchtyler@gmail.com</div>
-			</div>
+				<div class="row" onclick="openPopup(this.innerHTML)">
+					<div class="col first-name">Tyler</div>
+					<div class="col last-name">Riley</div>
+					<div class="col phone-number">813-215-9110</div>
+					<div class="col email">iwatchtyler@gmail.com</div>
+				</div>
 
-			<div class="row" onclick="openPopup(this.innerHTML)">
-				<div class="col first-name">Susie</div>
-				<div class="col last-name">Long</div>
-				<div class="col phone-number">111-111-1111</div>
-				<div class="col email">susielong@gmail.com</div>
-			</div>
+				<div class="row" onclick="openPopup(this.innerHTML)">
+					<div class="col first-name">Susie</div>
+					<div class="col last-name">Long</div>
+					<div class="col phone-number">111-111-1111</div>
+					<div class="col email">susielong@gmail.com</div>
+				</div>
 
-			<div class="row" onclick="openPopup(this.innerHTML)">
-				<div class="col first-name">Susie</div>
-				<div class="col last-name">Long</div>
-				<div class="col phone-number">111-111-1111</div>
-				<div class="col email">susielong@gmail.com</div>
+				<div class="row" onclick="openPopup(this.innerHTML)">
+					<div class="col first-name">Susie</div>
+					<div class="col last-name">Long</div>
+					<div class="col phone-number">111-111-1111</div>
+					<div class="col email">susielong@gmail.com</div>
+				</div>
 			</div>
 		</div>
-
 	</div>
 
 	<script type="text/javascript" src="js/search.js"></script>
