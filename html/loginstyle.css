@@ -1,0 +1,98 @@
+body 
+{
+  margin: 0;
+	width: 100vw;
+	height: 125vh;
+  background-color: #e4e4e4;
+	
+	background-image: url("images/main.gif");
+	background-repeat: no-repeat;
+	background-size: cover;
+	min-width: 300px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#logintitle
+{
+  text-align: center;
+  font-size: 36px;
+  color:#4bd3aa
+}
+
+#loginBackground
+{
+  font-size: 30px;
+  width: 70%;
+  margin-left: 15%;
+  padding: 25px;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.iconcenter {
+  text-align: center;
+}
+#displaytext 
+{
+  font-size: 24px;
+  color:#4bd3aa
+}
+#userpasstext
+{
+  font-size: 18px;
+  margin-bottom: -2%;
+  margin-top: 2%;
+}
+#username {
+  font-size: 18px;
+}
+#password {
+  font-size: 18px;
+}
+
+#loginsize
+{
+	font-size: 18px;
+}
+
+
+input[type="username"],input[type="password"]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 6px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+.buttons
+{
+  background-color: #4bd3aa;
+  color: rgb(0, 0, 0);
+  padding: 14px 20px;
+  margin: 8px 0;
+  cursor: pointer;
+  width: 100%;
+}
+
+.buttons:hover{
+  background-color: #354e464f;
+  color: rgb(202, 202, 202);
+  opacity: 75%;
+}
+
+#registerhere 
+{
+  font-size: 24px;
+  color:#4bd3aa
+}
+
+
+
+
+
+
+
+
+
+
+
