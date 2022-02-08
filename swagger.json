@@ -15,6 +15,7 @@
   "paths" : {
     "/PhonebookLogin.php" : {
       "post" : {
+        "tags" : [ "Login" ],
         "summary" : "Logs in to Phonebookpro app",
         "operationId" : "doLogin",
         "description" : "Logs in to Phonebookpro app",
@@ -43,7 +44,7 @@
     },
     "/PhonebookAdd.php" : {
       "post" : {
-        "tags" : [ "Contact" ],
+        "tags" : [ "ModifyContacts" ],
         "summary" : "Adds a new contact",
         "operationId" : "addContact",
         "description" : "Adds a new contact to the Phonebookpro app database",
@@ -69,6 +70,7 @@
     },
     "/PhonebookSearch.php" : {
       "post" : {
+        "tags" : [ "SearchContacts" ],
         "summary" : "Searches for contact",
         "operationId" : "searchContact",
         "description" : "Search for a contact in the Phonebookpro app database",
@@ -94,7 +96,7 @@
     },
     "/PhonebookRemove.php" : {
       "post" : {
-        "tags" : [ "Contact" ],
+        "tags" : [ "ModifyContacts" ],
         "summary" : "Removes a contact",
         "operationId" : "removeContact",
         "description" : "Removes a contact in the phonebookpro app database",
