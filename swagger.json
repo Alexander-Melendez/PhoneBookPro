@@ -104,7 +104,7 @@
           "name" : "userItem",
           "description" : "User",
           "schema" : {
-            "$ref" : "#/definitions/Search"
+            "$ref" : "#/definitions/Remove"
           }
         } ],
         "responses" : {
@@ -135,7 +135,7 @@
     },
     "User" : {
       "type" : "object",
-      "required" : [ "userID", "firstName", "lastName" ],
+      "required" : [ "userID", "firstName", "lastName", "phoneNumber", "email" ],
       "properties" : {
         "firstName" : {
           "type" : "string",
@@ -145,17 +145,35 @@
           "type" : "string",
           "example" : "Doe"
         },
-        "login" : {
+        "phoneNumber" : {
           "type" : "string",
-          "example" : "jdoe"
+          "example" : "4078492444"
         },
-        "password" : {
+        "email" : {
           "type" : "string",
-          "example" : "password123"
+          "example" : "jdoe@yahoo.com"
+        },
+        "userID" : {
+          "type" : "integer",
+          "example" : 1
         }
       }
     },
     "Search" : {
+      "type" : "object",
+      "required" : [ "userID", "search" ],
+      "properties" : {
+        "userID" : {
+          "type" : "string",
+          "example" : "1"
+        },
+        "search" : {
+          "type" : "string",
+          "example" : "Susie"
+        }
+      }
+    },
+    "Remove" : {
       "type" : "object",
       "required" : [ "userID", "search" ],
       "properties" : {
