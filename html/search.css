@@ -101,6 +101,17 @@ body{
     font-size: large;
 }
 
+.add-button{
+    padding: 25px;
+	text-decoration: none;
+	background-color: transparent;
+    border: none;
+    border-radius: 50px 0 0 50px;
+    align-self: flex-end;
+    height: 100%;
+    font-size: large;
+}
+
 button:hover{
     background-color: #e4e4e4;
 }

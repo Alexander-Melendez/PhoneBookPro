@@ -38,8 +38,10 @@
 			</div>
 
 			<div class="alter">
-				<button onclick="updataDatabase()">✍️</button>
-				<button onclick="remove()">🗑️</button>
+				<button id="add-button" onclick="add()">✔️</button>
+				<button id="edit-button" onclick="update()">✍️</button>
+				<button id="remove-button" onclick="remove()">🗑️</button>
+				<button id="favorite-button" onclick="favorite()">🤩</button>
 			</div>
 		</div>
   </div>
@@ -66,6 +68,7 @@
 	<div class="main">
 		
 		<div class="searchbar">
+			<button class="add-button" onclick="openPopup(null)">➕</button>
 			<input id="send" class="search-text" type="text" placeholder="Search.."></input>
 			<button class="search-button" onclick="test(this.innerHTML)">🔎</button>
 		</div>

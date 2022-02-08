@@ -19,37 +19,6 @@ function checkUser()
 	}
 }
 
-function addColor()
-{
-	let newColor = document.getElementById("colorText").value;
-	document.getElementById("colorAddResult").innerHTML = "";
-
-	let tmp = {color:newColor,userId,userId};
-	let jsonPayload = JSON.stringify( tmp );
-
-	let url = urlBase + '/AddColor.' + extension;
-	
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				document.getElementById("colorAddResult").innerHTML = "Color has been added";
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("colorAddResult").innerHTML = err.message;
-	}
-	
-}
-
 var input = document.getElementById("send");
 input.addEventListener("keydown", function (e) {
 	if (e.code === "Enter") {
@@ -104,29 +73,57 @@ function searchDatabase(search)
 	}
 }
 
-function test()
+function test(e)
 {
-	alert("poop");
+	alert(e);
 }
 
 function openPopup(row)
 {
 	let popup = document.getElementById("popup");
 	popup.style.display = "flex";
+
+	var firstName = "";
+	var lastName = "";
+	var phoneNumber = "";
+	var email = "";
+
+	if (row != null)
+	{
+		document.getElementById("add-button").style.display = "none";
+		document.getElementById("edit-button").style.display = "";
+		document.getElementById("remove-button").style.display = "";
+		document.getElementById("favorite-button").style.display = "";
+		parseRow();
+	}
+	else
+	{
+		document.getElementById("add-button").style.display = "";
+		document.getElementById("edit-button").style.display = "none";
+		document.getElementById("remove-button").style.display = "none";
+		document.getElementById("favorite-button").style.display = "none";
+	}
+
 	updateData();
+
+
+	function parseRow()
+	{
+		const parser = new DOMParser();
+		const doc = parser.parseFromString(row, 'text/html');
+
+		firstName = doc.querySelector(".first-name").innerHTML;
+		lastName = doc.querySelector(".last-name").innerHTML;
+		phoneNumber = doc.querySelector(".phone-number").innerHTML;
+		email = doc.querySelector(".email").innerHTML;
+	}
 
 	function updateData()
 	{
-		console.log(typeof row);
-
-		var firstName = row.querySelector(".first-name").innerHTML;
-		var lastName = row.querySelector("last-name").innerHTML;
-		var phoneNumber = row.querySelector("phone-number").innerHTML;
-		var email = row.querySelector("email").innerHTML;
-
-		alert(firstName);
-
-		document.getElementById("first-name").innerHTML = firstName.innerHTML;
+		document.getElementById("first-name").innerHTML = firstName;
+		document.getElementById("last-name").innerHTML = lastName;
+		document.getElementById("phone-number").innerHTML = phoneNumber;
+		document.getElementById("email").innerHTML = email;
 	}
 }
 
