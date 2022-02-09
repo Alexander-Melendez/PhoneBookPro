@@ -93,6 +93,35 @@ function add()
   closePopup();
 }
 
+function favorite()
+{
+    firstName = document.getElementById("first-name").innerHTML;
+	lastName = document.getElementById("last-name").innerHTML;
+  	phoneNumber = document.getElementById("phone-number").innerHTML;
+	email = document.getElementById("email").innerHTML;
+	let favorite = getFavorite();
+
+	favorite = favorite == 1 ? 0 : 1;
+
+	let tmp = {FirstName:firstName,LastName:lastName,PhoneNumber:phoneNumber,Email:email,UserID:userId,Favorite:favorite};
+
+	let jsonPayload = JSON.stringify( tmp );
+	
+	let url = urlBase + '/PhonebookFavorite.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("loginResult").innerHTML = err.message;
+	}
+}
+
 function closePopup()
 {
   let popup = document.getElementById("popup");

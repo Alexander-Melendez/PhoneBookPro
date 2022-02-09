@@ -12,9 +12,25 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT ID FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ? OR PhoneNumber LIKE ? OR Email LIKE ?) AND UserID=?");
-		$search = "%" . $inData["search"] . "%";
-		$stmt->bind_param("sssss", $search, $search, $search, $search, $inData["UserID"]);
+		$stmt;
+
+		if ($inData["search"] == "/all")
+		{
+			$stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserID=?");
+			$stmt->bind_param("s", $inData["UserID"]);
+		}
+		else if ($inData["search"] == "/fav")
+		{
+			$stmt = $conn->prepare("SELECT * FROM Contacts WHERE Favorite=1 AND UserID=?");
+			$stmt->bind_param("s", $inData["UserID"]);
+		}
+		else
+		{
+			$stmt = $conn->prepare("SELECT * FROM Contacts WHERE FirstName LIKE ? OR LastName LIKE ? OR PhoneNumber LIKE ? OR Email LIKE ? AND UserID=?");
+			$search = "%" . $inData["search"] . "%";
+			$stmt->bind_param("sssss", $search, $search, $search, $search, $inData["UserID"]);
+		}
+
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
@@ -26,7 +42,11 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '"' . $row["FirstName"] . ";" . $row["LastName"] . ";" . $row["PhoneNumber"] . ";" . $row["Email"] . '"';
+			$searchResults .= '{' .	
+									'"FirstName":"' . $row["FirstName"] . 
+									'","LastName":"' . $row["LastName"] . 
+									'","PhoneNumber":"' . $row["PhoneNumber"] .
+									'","Email":"' . $row["Email"] . '"}';
 		}
 		
 		if( $searchCount == 0 )
