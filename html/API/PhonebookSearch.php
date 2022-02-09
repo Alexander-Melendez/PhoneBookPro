@@ -46,7 +46,9 @@
 									'"FirstName":"' . $row["FirstName"] . 
 									'","LastName":"' . $row["LastName"] . 
 									'","PhoneNumber":"' . $row["PhoneNumber"] .
-									'","Email":"' . $row["Email"] . '"}';
+									'","Email":"' . $row["Email"] . 
+									'","Favorite":' . $row["Favorite"] . '}';
+
 		}
 		
 		if( $searchCount == 0 )

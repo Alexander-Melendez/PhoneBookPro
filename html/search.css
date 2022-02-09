@@ -18,7 +18,7 @@ body{
 .navbar {
     height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 100px; /* Set the width of the sidebar */
-    background-color: #859cc2; /* Black */
+    background-image: linear-gradient(45deg, #859cc2, #c77dd1); /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
     display:flex;
     flex-direction: column;
@@ -136,12 +136,38 @@ ul{
     padding: 10px 0;
 }
 
+#contacts{
+    border-radius: 10px;
+}
+
 .data .row:nth-child(2n+1){
-    background-color:#2f3644;
+    background-color:#292929;
+}
+
+.data .row:last-child{
+    border-radius: 0 0 10px 10px;
+}
+
+.data .row:first-child{
+    border-radius: 10px 10px 0 0;
+}
+
+.data .row:only-child{
+    border-radius: 10px;
+}
+
+.data .favorite{
+    background-color: none;
+    background-image: linear-gradient(45deg, #859cc2, #c77dd1);
 }
 
 .data .row:hover{
-    background-color:#859cc2;
+    background-color:rgb(133, 156, 194, .5);
+}
+
+.data .favorite:hover{
+    background-image: none;
+    background-color:rgb(133, 156, 194, .5);
 }
 
 .col{
@@ -154,10 +180,16 @@ ul{
 	background-color: transparent;
     border: none;
     color:#ffffff;
+    font-size: 1.2rem;
 }
 
 .header button:hover{
     color: #859cc2;
+}
+
+#error{
+    font-weight: bolder;
+    color: #ff0000;
 }
 
 @media only screen and (max-width:700px){

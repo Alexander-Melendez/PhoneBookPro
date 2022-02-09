@@ -40,8 +40,11 @@ function searchUser()
 function searchDatabase(search)
 {
 	document.getElementById("contacts").innerHTML = "";
-	
-	let list = "";
+
+	if (search == "")
+	{
+		search = "/all";
+	}
 
 	let tmp = {UserID:userId,search:search};
 	let jsonPayload = JSON.stringify( tmp );
@@ -62,8 +65,12 @@ function searchDatabase(search)
 				for( let i=0; i<json.results.length; i++ )
 				{
 					let row = document.createElement('div');
-					row.className = "row";
+					row.classList.add("row");
 					row.setAttribute("onclick", "openPopup(this.innerHTML)");
+					if (json.results[i].Favorite == 1)
+					{
+						row.classList.add("favorite");
+					}
 
 					let colFirstName = document.createElement('div');
 					colFirstName.classList.add("col");

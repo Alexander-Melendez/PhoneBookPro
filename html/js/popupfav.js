@@ -46,8 +46,9 @@ function update()
 }
 
 function remove() {
-	removeAsync(function(json) {
-		error(json);
+	removeAsync(function() {
+		closePopup();
+		checkUser("/fav");
 	});
 }
 
@@ -72,47 +73,7 @@ function removeAsync(callback)
 		xhr.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200)
 			{
-				let json = JSON.parse( xhr.responseText );
-				callback(json);
-			}
-		}
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("loginResult").innerHTML = err.message;
-	}
-}
-
-function add() {
-	addAsync(function (json) {
-		error(json);
-	});
-}
-
-function addAsync(callback)
-{	
-	var firstName = document.getElementById("first-name").innerHTML;
-	var lastName = document.getElementById("last-name").innerHTML;
-  var phoneNumber = document.getElementById("phone-number").innerHTML;
-	var email = document.getElementById("email").innerHTML;
-
-	let tmp = {FirstName:firstName,LastName:lastName,PhoneNumber:phoneNumber,Email:email,UserID:userId};
-
-	let jsonPayload = JSON.stringify( tmp );
-	
-	let url = urlBase + '/PhonebookAdd.' + extension;
-
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200)
-			{
-				let json = JSON.parse( xhr.responseText );
-				callback(json);
+				callback();
 			}
 		}
 		xhr.send(jsonPayload);
@@ -124,8 +85,9 @@ function addAsync(callback)
 }
 
 function favorite() {
-	favoriteAsync(function () {
-		checkUser(document.getElementById("send").value);
+	favoriteAsync(function() {
+		closePopup();
+		checkUser("/fav");
 	});
 }
 
@@ -135,51 +97,34 @@ function favoriteAsync(callback)
 	var lastName = document.getElementById("last-name").innerHTML;
   var phoneNumber = document.getElementById("phone-number").innerHTML;
 	var email = document.getElementById("email").innerHTML;
-	getFavorite(firstName, lastName, phoneNumber, email, function(favorite){
-		if(favorite == 1)
-		{
-			favorite = 0;
-			document.getElementById("favorite-button").style.display = "";
-			document.getElementById("unfavorite-button").style.display = "none";
-		}
-		else
-		{
-			favorite = 1;
-			document.getElementById("favorite-button").style.display = "none";
-			document.getElementById("unfavorite-button").style.display = "";
-		}
 
-		let tmp = {FirstName:firstName,LastName:lastName,PhoneNumber:phoneNumber,Email:email,UserID:userId,Favorite:favorite};
+	let tmp = {FirstName:firstName,LastName:lastName,PhoneNumber:phoneNumber,Email:email,UserID:userId,Favorite:0};
 
-		let jsonPayload = JSON.stringify( tmp );
-		
-		let url = urlBase + '/PhonebookFavorite.' + extension;
+	let jsonPayload = JSON.stringify( tmp );
 	
-		let xhr = new XMLHttpRequest();
-		xhr.open("POST", url, true);
-		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-		try
-		{
-			xhr.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200)
-				{
-					callback();
-				}
+	let url = urlBase + '/PhonebookFavorite.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200)
+			{
+				callback();
 			}
-			xhr.send(jsonPayload);
 		}
-		catch(err)
-		{
-			document.getElementById("loginResult").innerHTML = err.message;
-		}
-	});
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("loginResult").innerHTML = err.message;
+	}
 }
 
 function closePopup()
 {
-	let error = document.getElementById("error");
-	error.innerHTML = "";
-	error.style.display = "none";
   let popup = document.getElementById("popup");
 	popup.style.display = "none";
 }
@@ -214,17 +159,3 @@ function getFavorite(firstName, lastName, phoneNumber, email, callback)
 	}
 }
 
-function error(json)
-{
-	if (json.error != "")
-	{
-		let error = document.getElementById("error");
-		error.innerHTML = json.error;
-		error.style.display = "";
-	}
-	else
-	{
-		closePopup();
-		checkUser(document.getElementById("send").value);
-	}
-}

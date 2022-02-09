@@ -37,6 +37,9 @@
 				</div>
 			</div>
 
+			<div id="error">
+			</div>
+
 			<div class="alter">
 				<button id="add-button" onclick="add()">✔️</button>
 				<button id="edit-button" onclick="update()">✍️</button>
@@ -76,10 +79,10 @@
 
 		<div class="data">
 			<div class="header">
-				<div class="col"><button onclick="test()">First Name ▲</button></div>
-				<div class="col"><button onclick="test()">Last Name ▼</button></div>
-				<div class="col"><button onclick="test()">Phone Number ▲</button></div>
-				<div class="col"><button onclick="test()">Email ▲</button></div>
+				<div class="col"><button class="sort-first" onclick="test()">First Name ▲</button></div>
+				<div class="col"><button class="sort-last" onclick="test()">Last Name ▼</button></div>
+				<div class="col"><button class="sort-phone" onclick="test()">Phone Number ▲</button></div>
+				<div class="col"><button class="sort-email" onclick="test()">Email ▲</button></div>
 			</div>
 
 			<div id="contacts">
