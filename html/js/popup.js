@@ -1,6 +1,11 @@
 // Updates database.
 function update()
 {
+	var firstName = document.getElementById("first-name").innerHTML;
+	var lastName = document.getElementById("last-name").innerHTML;
+  var phoneNumber = document.getElementById("phone-number").innerHTML;
+	var email = document.getElementById("email").innerHTML;
+
   let search = e;
 	document.getElementById("result").innerHTML = "";
 
@@ -42,6 +47,11 @@ function update()
 
 function remove()
 {
+	var firstName = document.getElementById("first-name").innerHTML;
+	var lastName = document.getElementById("last-name").innerHTML;
+  var phoneNumber = document.getElementById("phone-number").innerHTML;
+	var email = document.getElementById("email").innerHTML;
+
 	let tmp = {FirstName:firstName,LastName:lastName,PhoneNumber:phoneNumber,Email:email,UserID:userId};
 
 	let jsonPayload = JSON.stringify( tmp );
@@ -67,10 +77,10 @@ function remove()
 
 function add()
 {	
-  firstName = document.getElementById("first-name").innerHTML;
-	lastName = document.getElementById("last-name").innerHTML;
-  phoneNumber = document.getElementById("phone-number").innerHTML;
-	email = document.getElementById("email").innerHTML;
+	var firstName = document.getElementById("first-name").innerHTML;
+	var lastName = document.getElementById("last-name").innerHTML;
+  var phoneNumber = document.getElementById("phone-number").innerHTML;
+	var email = document.getElementById("email").innerHTML;
 
 	let tmp = {FirstName:firstName,LastName:lastName,PhoneNumber:phoneNumber,Email:email,UserID:userId};
 
@@ -95,31 +105,42 @@ function add()
 
 function favorite()
 {
-    firstName = document.getElementById("first-name").innerHTML;
-	lastName = document.getElementById("last-name").innerHTML;
-  	phoneNumber = document.getElementById("phone-number").innerHTML;
-	email = document.getElementById("email").innerHTML;
-	let favorite = getFavorite();
+  var firstName = document.getElementById("first-name").innerHTML;
+	var lastName = document.getElementById("last-name").innerHTML;
+  var phoneNumber = document.getElementById("phone-number").innerHTML;
+	var email = document.getElementById("email").innerHTML;
+	getFavorite(firstName, lastName, phoneNumber, email, function(favorite){
+		if(favorite == 1)
+		{
+			favorite = 0;
+			document.getElementById("favorite-button").style.display = "";
+			document.getElementById("unfavorite-button").style.display = "none";
+		}
+		else
+		{
+			favorite = 1;
+			document.getElementById("favorite-button").style.display = "none";
+			document.getElementById("unfavorite-button").style.display = "";
+		}
 
-	favorite = favorite == 1 ? 0 : 1;
+		let tmp = {FirstName:firstName,LastName:lastName,PhoneNumber:phoneNumber,Email:email,UserID:userId,Favorite:favorite};
 
-	let tmp = {FirstName:firstName,LastName:lastName,PhoneNumber:phoneNumber,Email:email,UserID:userId,Favorite:favorite};
-
-	let jsonPayload = JSON.stringify( tmp );
+		let jsonPayload = JSON.stringify( tmp );
+		
+		let url = urlBase + '/PhonebookFavorite.' + extension;
 	
-	let url = urlBase + '/PhonebookFavorite.' + extension;
-
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("loginResult").innerHTML = err.message;
-	}
+		let xhr = new XMLHttpRequest();
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+		try
+		{
+			xhr.send(jsonPayload);
+		}
+		catch(err)
+		{
+			document.getElementById("loginResult").innerHTML = err.message;
+		}
+	});
 }
 
 function closePopup()
@@ -128,4 +149,33 @@ function closePopup()
 	popup.style.display = "none";
 }
 
+function getFavorite(firstName, lastName, phoneNumber, email, callback)
+{
+	var fav = 0;
+	let tmp = {FirstName:firstName,LastName:lastName,PhoneNumber:phoneNumber,Email:email,UserID:userId};
+
+	let jsonPayload = JSON.stringify( tmp );
+	
+	let url = urlBase + '/PhonebookIsFavorite.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				let json = JSON.parse( xhr.responseText );
+				callback(fav = json.Favorite);
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("loginResult").innerHTML = err.message;
+	}
+}
 

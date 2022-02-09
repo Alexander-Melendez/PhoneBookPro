@@ -21,9 +21,16 @@ function checkUser(command)
 var input = document.getElementById("send");
 input.addEventListener("keydown", function (e) {
 	if (e.code === "Enter") {
-		searchDatabase(search = input.value);
+		searchUser();
 	}
 });
+input.addEventListener("keyup", function (e) {
+	if ((e.keyCode > 31 && e.keyCode < 127) || e.keyCode == 8 ) {
+		searchUser();
+	}
+});
+
+
 
 function searchUser()
 {
@@ -34,7 +41,7 @@ function searchDatabase(search)
 {
 	document.getElementById("contacts").innerHTML = "";
 	
-	let list = "";	
+	let list = "";
 
 	let tmp = {UserID:userId,search:search};
 	let jsonPayload = JSON.stringify( tmp );
@@ -116,16 +123,18 @@ function openPopup(row)
 		document.getElementById("add-button").style.display = "none";
 		document.getElementById("edit-button").style.display = "";
 		document.getElementById("remove-button").style.display = "";
-		if (getFavorite(firstName, lastName, phoneNumber, email) == 1)
-		{
-			document.getElementById("favorite-button").style.display = "none";
-			document.getElementById("unfavorite-button").style.display = "";
-		}
-		else
-		{
-			document.getElementById("unfavorite-button").style.display = "none";
-			document.getElementById("favorite-button").style.display = "";
-		}
+		getFavorite(firstName, lastName, phoneNumber, email, function(favorite){
+			if(favorite == 1)
+			{
+				document.getElementById("favorite-button").style.display = "none";
+				document.getElementById("unfavorite-button").style.display = "";
+			}
+			else
+			{
+				document.getElementById("unfavorite-button").style.display = "none";
+				document.getElementById("favorite-button").style.display = "";
+			}
+		});
 	}
 	else
 	{
@@ -159,9 +168,9 @@ function openPopup(row)
 	}
 }
 
-function getFavorite(firstName, lastName, phoneNumber, email)
+function getFavorite(firstName, lastName, phoneNumber, email, callback)
 {
-	let fav = 0;
+	var fav = 0;
 	let tmp = {FirstName:firstName,LastName:lastName,PhoneNumber:phoneNumber,Email:email,UserID:userId};
 
 	let jsonPayload = JSON.stringify( tmp );
@@ -173,12 +182,12 @@ function getFavorite(firstName, lastName, phoneNumber, email)
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try
 	{
-		xhr.onreadystatechange = function() 
+		xhr.onreadystatechange = function()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				let json = JSON.parse( xhr.responseText );
-				fav = json.Favorite;
+				callback(fav = json.Favorite);
 			}
 		};
 		xhr.send(jsonPayload);
@@ -187,8 +196,6 @@ function getFavorite(firstName, lastName, phoneNumber, email)
 	{
 		document.getElementById("loginResult").innerHTML = err.message;
 	}
-
-	return fav;
 }
 
 

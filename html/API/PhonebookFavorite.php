@@ -15,8 +15,8 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("UPDATE Contacts SET Favorite=? WHERE (FirstName,LastName,PhoneNumber,Email,UserID) VALUES (?,?,?,?,?)");
-		$stmt->bind_param("sssssi", $favorite, $firstName, $lastName, $phoneNumber, $email, $userId);
+		$stmt = $conn->prepare("UPDATE Contacts SET Favorite=? WHERE FirstName=? AND LastName=? AND PhoneNumber=? AND Email=? AND UserID=?");
+		$stmt->bind_param("ssssss", $favorite, $firstName, $lastName, $phoneNumber, $email, $userId);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();

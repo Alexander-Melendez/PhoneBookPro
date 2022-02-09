@@ -4,7 +4,7 @@
 	<meta charset="utf-16">
 	<title>Phonebook</title>
 	<link href="search.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="js/search.js"></script>
+	<link href="popup.css" rel="stylesheet" type="text/css">
 </head>
 
 <body onload="checkUser('/fav')">
@@ -28,6 +28,44 @@
 	</div>
 	
 	<div class="main">
+		<div id="popup">
+			<div class="center">
+				<div class="align-right">
+					<div class="exit">
+						<button id="close-button" onclick = "closePopup()">❌</button>
+					</div>
+				</div>
+	
+				<div class="align-left">
+					<div class="contact-info">
+						<div class="info">
+							<h4>First Name:</h4>
+							<p class="editable" contenteditable="true" id="first-name">Susie</p>
+						</div>
+						<div class="info">
+							<h4>Last Name:</h4>
+							<p class="editable" contenteditable="true" id="last-name">Long</p>
+						</div>
+						<div class="info">
+							<h4>Phone Number:</h4>
+							<p class="editable" contenteditable="true" id="phone-number">111-111-1111</p>
+						</div>
+						<div class="info">
+							<h4>Email:</h4>
+							<p class="editable" contenteditable="true" id="email">susielong@gmail.com</p>
+						</div>
+					</div>
+				</div>
+	
+				<div class="alter">
+					<button id="add-button" onclick="add()">✔️</button>
+					<button id="edit-button" onclick="update()">✍️</button>
+					<button id="remove-button" onclick="remove()">🗑️</button>
+					<button id="favorite-button" onclick="favorite()">🤩</button>
+					<button id="unfavorite-button" onclick="favorite()">🤬</button>
+				</div>
+			</div>
+		</div>
 
 		<div class="data">
 			<div class="header">
@@ -42,5 +80,8 @@
 		</div>
 
 	</div>
+
+<script type="text/javascript" src="js/search.js"></script>
+<script type="text/javascript" src="js/popup.js"></script>
 </body>
 </html>

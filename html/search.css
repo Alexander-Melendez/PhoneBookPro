@@ -136,7 +136,7 @@ ul{
     padding: 10px 0;
 }
 
-.data .row:nth-child(2n){
+.data .row:nth-child(2n+1){
     background-color:#2f3644;
 }
 

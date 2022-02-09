@@ -41,7 +41,7 @@ function doLogin()
 					return;
 				}
 		
-        		localStorage.setItem("userId", userId);
+        localStorage.setItem("userId", userId);
    
 				firstName = jsonObject.firstName;
 				lastName = jsonObject.lastName;

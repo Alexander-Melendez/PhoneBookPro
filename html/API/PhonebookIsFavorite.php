@@ -14,13 +14,13 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE (FirstName,LastName,PhoneNumber,Email,UserID) VALUES (?,?,?,?,?)");
+		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE FirstName=? AND LastName=? AND PhoneNumber=? AND Email=? AND UserID=?");
 		$stmt->bind_param("sssss", $firstName, $lastName, $phoneNumber, $email, $userId);
 		$stmt->execute();
 
 		$result = $stmt->get_result();
 
-		if( $row = $result->fetch_assoc()  )
+		if( $row = $result->fetch_assoc() )
 		{
 			returnWithInfo( $row["Favorite"] );
 		}
@@ -40,7 +40,7 @@
 
 	function sendResultInfoAsJson( $obj )
 	{
-		header('Content-type: application/json');
+		header('Content-type:application/json');
 		echo $obj;
 	}
 	
@@ -52,7 +52,7 @@
 
 	function returnWithInfo( $favorite )
 	{
-		$retValue = '{"Favorite":' . $favorite '}';
+		$retValue = '{"Favorite":' . $favorite . '}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
