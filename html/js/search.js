@@ -172,6 +172,11 @@ function openPopup(row)
 		document.getElementById("last-name").innerHTML = lastName;
 		document.getElementById("phone-number").innerHTML = phoneNumber;
 		document.getElementById("email").innerHTML = email;
+
+		localStorage.setItem("firstName", firstName);
+		localStorage.setItem("lastName", lastName);
+		localStorage.setItem("phoneNumber", phoneNumber);
+		localStorage.setItem("email", email);
 	}
 }
 
