@@ -22,13 +22,13 @@ function checkNull(event)
 
 function submit()
 {
-	let operation = document.getElementById("title");
+	let operation = localStorage.getItem("operation");
 
-	if (operation.innerHTML == "Add a user")
+	if (operation == "add")
 	{
 		add();
 	}
-	else
+	else if (operation == "update")
 	{
 		update();
 	}
@@ -91,7 +91,9 @@ function remove() {
 
 	let error = document.getElementById("error");
 	error.style.display = "";
-	error.style.height = "100%";
+
+	let popup = document.getElementById("center");
+	popup.style.height = "20vh";
 
 	let div = document.createElement("div");
 	div.innerHTML = "Are you sure you want to delete?";
@@ -110,11 +112,13 @@ function remove() {
 	okay.innerHTML = "👍";
 	okay.setAttribute("onclick", "removeOkay()");
 	okay.setAttribute("id", "okay");
+	okay.setAttribute("type", "button");
 	
 	let cancel = document.createElement("button");
 	cancel.innerHTML = "👎";
 	cancel.setAttribute("onclick", "removeCancel()");
 	cancel.setAttribute("id", "cancel");
+	cancel.setAttribute("type", "button");
 
 	features.appendChild(okay);
 	features.appendChild(cancel);
@@ -137,9 +141,10 @@ function removeCancel()
 	let title = document.getElementById("title");
 	title.style.display = "";
 
+	let popup = document.getElementById("center");
+	popup.style.height = "60vh";
+
 	let error = document.getElementById("error");
-	document.getElementById("error").style.height = "auto";
-	error.style.display = "none";
 	error.innerHTML = "";
 
 	document.getElementById("close-button").style.display = "";
@@ -162,9 +167,25 @@ function removeCancel()
 
 function removeOkay()
 {
+	let features = document.getElementById("features");
+	features.removeChild(document.getElementById("okay"));
+	features.removeChild(document.getElementById("cancel"));
+
+	let info = document.getElementById("info");
+	info.style.display = "";
+
+	let errorEl = document.getElementById("error");
+	errorEl.style.display = "none";
+	errorEl.innerHTML = "";
+
+	document.getElementById("title").style.display = "";
+	document.getElementById("center").style.height = "60vh";
+
+	document.getElementById("close-button").style.display = "";
+	document.getElementById("edit-button").style.display = "";
+	document.getElementById("remove-button").style.display = "";
+
 	removeAsync(function(json) {
-		document.getElementById("error").style.height = "auto";
-		document.getElementById("title").style.display = "";
 		error(json);
 	});
 }

@@ -9,7 +9,7 @@
 
 <body onload="checkUser('/fav')">
 	<div id="popup">
-		<div class="center">
+		<div id="center" class="center">
 			<div class="align-right">
 				<div class="exit">
 					<button id="close-button" onclick = "closePopup();return false;">❌</button>
@@ -79,9 +79,9 @@
 		<div class="data">
 			<div class="header">
 				<div class="col"><button class="sort-first" onclick="sortBy('FirstName')">First Name</button></div>
-				<div class="col"><button id="sort" class="sort-last" onclick="sortBy()">Last Name ▼</button></div>
-				<div class="col"><button class="sort-phone" onclick="sortBy()">Phone Number</button></div>
-				<div class="col"><button class="sort-email" onclick="sortBy()">Email</button></div>
+				<div class="col"><button id="sort" class="sort-last" onclick="sortBy('LastName')">Last Name ▼</button></div>
+				<div class="col"><button class="sort-phone" onclick="sortBy('PhoneNumber')">Phone Number</button></div>
+				<div class="col"><button class="sort-email" onclick="sortBy('Email')">Email</button></div>
 			</div>
 
 			<div id="contacts">
@@ -90,7 +90,7 @@
 
 	</div>
 
-<script type="text/javascript" src="js/search.js"></script>
+<script type="text/javascript" src="js/searchfav.js"></script>
 <script type="text/javascript" src="js/popupfav.js"></script>
 </body>
 </html>

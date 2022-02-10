@@ -18,23 +18,6 @@ function checkUser(command)
 	}
 }
 
-var input = document.getElementById("send");
-input.addEventListener("keydown", function (e) {
-	if (e.code === "Enter") {
-		searchUser();
-	}
-});
-input.addEventListener("keyup", function (e) {
-	if ((e.keyCode > 31 && e.keyCode < 127) || e.keyCode == 8 ) {
-		searchUser();
-	}
-});
-
-function searchUser()
-{
-	searchDatabase(search = document.getElementById("send").value);
-}
-
 function sortBy(newSort)
 {
 	let oldSort = document.getElementById("sort");
@@ -79,7 +62,7 @@ function sortBy(newSort)
 			element.innerHTML = temp[0]  + " ▼";
 	}
 
-	searchUser();
+	searchDatabase("/fav");
 }
 
 function searchDatabase(search)
