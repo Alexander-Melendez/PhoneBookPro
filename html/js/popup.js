@@ -1,6 +1,43 @@
+const form = document.getElementById("form");
+form.addEventListener("submit", checkNull);
+
+function checkNull(event)
+{
+	if (	document.getElementById("first-name").value == "" ||
+				document.getElementById("last-name").value == "" ||
+				document.getElementById("phone-number").value == "" ||
+				document.getElementById("email").value == "")
+	{
+		let error = document.getElementById("error");
+		error.innerHTML = "Please fill in all fields";
+		error.style.display = "";
+	}
+	else
+	{
+		submit();
+	}
+
+	event.preventDefault();
+}
+
+function submit()
+{
+	let operation = document.getElementById("title");
+
+	if (operation.innerHTML == "Add a user")
+	{
+		add();
+	}
+	else
+	{
+		update();
+	}
+}
+
 // Updates database.
 function update()
 {
+	alert("Mayday");
 	var firstName = document.getElementById("first-name").innerHTML;
 	var lastName = document.getElementById("last-name").innerHTML;
   	var phoneNumber = document.getElementById("phone-number").innerHTML;
@@ -41,7 +78,7 @@ function update()
 	}
 	catch(err)
 	{
-		document.getElementById("colorSearchResult").innerHTML = err.message;
+		document.getElementById("error").innerHTML = err.message;
 	}
 }
 
@@ -49,9 +86,17 @@ function remove() {
 	let info = document.getElementById("info");
 	info.style.display = "none";
 
+	let title = document.getElementById("title");
+	title.style.display = "none";
+
 	let error = document.getElementById("error");
 	error.style.display = "";
-	error.innerHTML = "Are you sure you want to delete?"
+	error.style.height = "100%";
+
+	let div = document.createElement("div");
+	div.innerHTML = "Are you sure you want to delete?";
+
+	error.appendChild(div);
 
 	document.getElementById("close-button").style.display = "none";
 	document.getElementById("edit-button").style.display = "none";
@@ -79,7 +124,7 @@ function removeCancel()
 {
 	var firstName = localStorage.getItem("firstName");
 	var lastName = localStorage.getItem("lastName");
-  	var phoneNumber = localStorage.getItem("phoneNumber");
+  var phoneNumber = localStorage.getItem("phoneNumber");
 	var email = localStorage.getItem("email");
 
 	let features = document.getElementById("features");
@@ -89,7 +134,11 @@ function removeCancel()
 	let info = document.getElementById("info");
 	info.style.display = "";
 
+	let title = document.getElementById("title");
+	title.style.display = "";
+
 	let error = document.getElementById("error");
+	document.getElementById("error").style.height = "auto";
 	error.style.display = "none";
 	error.innerHTML = "";
 
@@ -109,12 +158,13 @@ function removeCancel()
 			document.getElementById("unfavorite-button").style.display = "none";
 		}	
 	});
-
 }
 
 function removeOkay()
 {
 	removeAsync(function(json) {
+		document.getElementById("error").style.height = "auto";
+		document.getElementById("title").style.display = "";
 		error(json);
 	});
 }
@@ -123,7 +173,7 @@ function removeAsync(callback)
 {
 	var firstName = localStorage.getItem("firstName");
 	var lastName = localStorage.getItem("lastName");
-  	var phoneNumber = localStorage.getItem("phoneNumber");
+  var phoneNumber = localStorage.getItem("phoneNumber");
 	var email = localStorage.getItem("email");
 
 	let tmp = {FirstName:firstName,LastName:lastName,PhoneNumber:phoneNumber,Email:email,UserID:userId};
@@ -148,7 +198,7 @@ function removeAsync(callback)
 	}
 	catch(err)
 	{
-		document.getElementById("loginResult").innerHTML = err.message;
+		document.getElementById("error").innerHTML = err.message;
 	}
 }
 
@@ -160,10 +210,10 @@ function add() {
 
 function addAsync(callback)
 {	
-	var firstName = document.getElementById("first-name").innerHTML;
-	var lastName = document.getElementById("last-name").innerHTML;
-  	var phoneNumber = document.getElementById("phone-number").innerHTML;
-	var email = document.getElementById("email").innerHTML;
+	var firstName = document.getElementById("first-name").value;
+	var lastName = document.getElementById("last-name").value;
+  var phoneNumber = document.getElementById("phone-number").value;
+	var email = document.getElementById("email").value;
 
 	let tmp = {FirstName:firstName,LastName:lastName,PhoneNumber:phoneNumber,Email:email,UserID:userId};
 
@@ -191,9 +241,17 @@ function addAsync(callback)
 	}
 }
 
-function favorite() {
+function favorite(favorite) {
 	favoriteAsync(function () {
-		checkUser(document.getElementById("send").value);
+		if (favorite == "favorite")
+		{
+			closePopup();
+			checkUser("/fav");
+		}
+		else
+		{
+			checkUser(document.getElementById("send").value);
+		}
 	});
 }
 
@@ -201,7 +259,7 @@ function favoriteAsync(callback)
 {
 	var firstName = localStorage.getItem("firstName");
 	var lastName = localStorage.getItem("lastName");
-  	var phoneNumber = localStorage.getItem("phoneNumber");
+  var phoneNumber = localStorage.getItem("phoneNumber");
 	var email = localStorage.getItem("email");
 
 	getFavorite(firstName, lastName, phoneNumber, email, function(favorite){

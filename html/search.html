@@ -16,37 +16,42 @@
 				</div>
 			</div>
 
-			<div id="info" class="align-left">
-				<div class="contact-info">
-					<div class="info">
-						<h4>First Name:</h4>
-						<p class="editable" contenteditable="true" id="first-name">Susie</p>
-					</div>
-					<div class="info">
-						<h4>Last Name:</h4>
-						<p class="editable" contenteditable="true" id="last-name">Long</p>
-					</div>
-					<div class="info">
-						<h4>Phone Number:</h4>
-						<p class="editable" contenteditable="true" id="phone-number">111-111-1111</p>
-					</div>
-					<div class="info">
-						<h4>Email:</h4>
-						<p class="editable" contenteditable="true" id="email">susielong@gmail.com</p>
+			<div id="title">
+			</div>
+
+			<form id="form" class="form">
+				<div id="info" class="align-left">
+					<div class="contact-info">
+						<div class="info">
+							<h4>First Name:</h4>
+							<input class="editable" type="text" placeholder="Bob" id="first-name"></input>
+						</div>
+						<div class="info">
+							<h4>Last Name:</h4>
+							<input class="editable" type="text" placeholder="Smith" id="last-name"></input>
+						</div>
+						<div class="info">
+							<h4>Phone Number:</h4>
+							<input class="editable" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="111-222-3333" id="phone-number"></input>
+						</div>
+						<div class="info">
+							<h4>Email:</h4>
+							<input class="editable" type="email" placeholder="example@example.com" id="email"></input>
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div id="error">
-			</div>
+				<div id="error">
+				</div>
 
-			<div id="features" class="alter">
-				<button id="add-button" onclick="add()">✔️</button>
-				<button id="edit-button" onclick="update()">✍️</button>
-				<button id="remove-button" onclick="remove()">🗑️</button>
-				<button id="favorite-button" onclick="favorite()">🤩</button>
-				<button id="unfavorite-button" onclick="favorite()">🤬</button>
-			</div>
+				<div id="features" class="alter">
+					<input type="submit" class="form-button" id="add-button" value="✔️"></input>
+					<input type="submit" class="form-button" id="edit-button" value="✍️"></input>
+					<button id="remove-button" type="button" onclick="remove()">🗑️</button>
+					<button id="favorite-button" type="button" onclick="favorite()">🤩</button>
+					<button id="unfavorite-button" type="button" onclick="favorite()">🤬</button>
+				</div>
+			</form>
 		</div>
   </div>
 
@@ -79,10 +84,10 @@
 
 		<div class="data">
 			<div class="header">
-				<div class="col"><button class="sort-first" onclick="test()">First Name ▲</button></div>
-				<div class="col"><button class="sort-last" onclick="test()">Last Name ▼</button></div>
-				<div class="col"><button class="sort-phone" onclick="test()">Phone Number ▲</button></div>
-				<div class="col"><button class="sort-email" onclick="test()">Email ▲</button></div>
+				<div class="col"><button class="sort-first" onclick="sortBy('FirstName')">First Name</button></div>
+				<div class="col"><button id="sort" class="sort-last" onclick="sortBy('LastName')">Last Name ▼</button></div>
+				<div class="col"><button class="sort-phone" onclick="sortBy('PhoneNumber')">Phone Number</button></div>
+				<div class="col"><button class="sort-email" onclick="sortBy('Email')">Email</button></div>
 			</div>
 
 			<div id="contacts">

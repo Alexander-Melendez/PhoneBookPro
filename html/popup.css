@@ -40,6 +40,20 @@
   margin: 10px;
 }
 
+#popup .form-button{
+  width: 50px;
+  height: 50px;
+  text-decoration: none;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  margin: 10px;
+}
+
+#popup .form-button:hover{
+  background-color: #151515;
+}
+
 #popup button:hover{
   background-color: #151515;
 }
@@ -49,6 +63,15 @@
   display: flex;
   justify-content: flex-end;
   align-items:flex-end;
+}
+
+#popup .form{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #popup .align-left{
@@ -76,15 +99,18 @@
   width: 100%;
   padding: 10px;
   background-color: #ffffff;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  border-width: 0;
 }
 
-#popup .info p{
-  text-decoration: none;
+#popup .info .editable:focus{
   outline: none;
   border: none;
 }
 
-#popup .info p:hover{
+#popup .info input:hover{
   background-color: #859cc2;
 }
 
@@ -94,4 +120,20 @@
 
 #popup .alter{
   margin: 2em;
+}
+
+#title{
+  font-size: 1.3rem;  
+}
+
+.alter{
+  align-items:flex-end;
+}
+
+#error{
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

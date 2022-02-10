@@ -1,3 +1,39 @@
+const form = document.getElementById("form");
+form.addEventListener("submit", checkNull);
+
+function checkNull(event)
+{
+	if (	document.getElementById("first-name").value == "" ||
+				document.getElementById("last-name").value == "" ||
+				document.getElementById("phone-number").value == "" ||
+				document.getElementById("email").value == "")
+	{
+		let error = document.getElementById("error");
+		error.innerHTML = "Please fill in all fields";
+		error.style.display = "";
+	}
+	else
+	{
+		submit();
+	}
+
+	event.preventDefault();
+}
+
+function submit()
+{
+	let operation = document.getElementById("title");
+
+	if (operation.innerHTML == "Add a user")
+	{
+		add();
+	}
+	else
+	{
+		update();
+	}
+}
+
 // Updates database.
 function update()
 {
@@ -46,9 +82,76 @@ function update()
 }
 
 function remove() {
-	removeAsync(function() {
-		closePopup();
-		checkUser("/fav");
+	let info = document.getElementById("info");
+	info.style.display = "none";
+
+	let error = document.getElementById("error");
+	error.style.display = "";
+	error.innerHTML = "Are you sure you want to delete?"
+
+	document.getElementById("close-button").style.display = "none";
+	document.getElementById("edit-button").style.display = "none";
+	document.getElementById("remove-button").style.display = "none";
+	document.getElementById("favorite-button").style.display = "none";
+	document.getElementById("unfavorite-button").style.display = "none";
+
+	let features = document.getElementById("features");
+
+	let okay = document.createElement("button");
+	okay.innerHTML = "👍";
+	okay.setAttribute("onclick", "removeOkay()");
+	okay.setAttribute("id", "okay");
+	
+	let cancel = document.createElement("button");
+	cancel.innerHTML = "👎";
+	cancel.setAttribute("onclick", "removeCancel()");
+	cancel.setAttribute("id", "cancel");
+
+	features.appendChild(okay);
+	features.appendChild(cancel);
+}
+
+function removeCancel()
+{
+	var firstName = localStorage.getItem("firstName");
+	var lastName = localStorage.getItem("lastName");
+  	var phoneNumber = localStorage.getItem("phoneNumber");
+	var email = localStorage.getItem("email");
+
+	let features = document.getElementById("features");
+	features.removeChild(document.getElementById("okay"));
+	features.removeChild(document.getElementById("cancel"));
+
+	let info = document.getElementById("info");
+	info.style.display = "";
+
+	let error = document.getElementById("error");
+	error.style.display = "none";
+	error.innerHTML = "";
+
+	document.getElementById("close-button").style.display = "";
+	document.getElementById("edit-button").style.display = "";
+	document.getElementById("remove-button").style.display = "";
+
+	getFavorite(firstName, lastName, phoneNumber, email, function(favorite){
+		if(favorite == 1)
+		{
+			document.getElementById("favorite-button").style.display = "none";
+			document.getElementById("unfavorite-button").style.display = "";
+		}
+		else
+		{
+			document.getElementById("favorite-button").style.display = "";
+			document.getElementById("unfavorite-button").style.display = "none";
+		}	
+	});
+
+}
+
+function removeOkay()
+{
+	removeAsync(function(json) {
+		error(json);
 	});
 }
 

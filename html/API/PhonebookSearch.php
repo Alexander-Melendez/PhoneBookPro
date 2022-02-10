@@ -4,6 +4,7 @@
 	
 	$searchResults = "";
 	$searchCount = 0;
+	$sort = $inData["sort"];
 
 	$conn = new mysqli("localhost", "admin", "password", "Phonebook");
 	if ($conn->connect_error) 
@@ -16,17 +17,17 @@
 
 		if ($inData["search"] == "/all")
 		{
-			$stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserID=?");
+			$stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserID=? ORDER BY $sort");
 			$stmt->bind_param("s", $inData["UserID"]);
 		}
 		else if ($inData["search"] == "/fav")
 		{
-			$stmt = $conn->prepare("SELECT * FROM Contacts WHERE Favorite=1 AND UserID=?");
+			$stmt = $conn->prepare("SELECT * FROM Contacts WHERE Favorite=1 AND UserID=? ORDER BY $sort");
 			$stmt->bind_param("s", $inData["UserID"]);
 		}
 		else
 		{
-			$stmt = $conn->prepare("SELECT * FROM Contacts WHERE FirstName LIKE ? OR LastName LIKE ? OR PhoneNumber LIKE ? OR Email LIKE ? AND UserID=?");
+			$stmt = $conn->prepare("SELECT * FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ? OR PhoneNumber LIKE ? OR Email LIKE ?) AND UserID=? ORDER BY $sort");
 			$search = "%" . $inData["search"] . "%";
 			$stmt->bind_param("sssss", $search, $search, $search, $search, $inData["UserID"]);
 		}

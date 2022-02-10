@@ -80,7 +80,6 @@ body{
     border: none;
     width: 100%;
     height: 100%;
-    border-radius: 50px 0 0 50px;
     align-self: flex-end;
     font-size: 2rem;
 }
@@ -180,7 +179,7 @@ ul{
 	background-color: transparent;
     border: none;
     color:#ffffff;
-    font-size: 1.2rem;
+    font-size: 1.05rem;
 }
 
 .header button:hover{

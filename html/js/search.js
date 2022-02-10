@@ -30,23 +30,82 @@ input.addEventListener("keyup", function (e) {
 	}
 });
 
-
-
 function searchUser()
 {
 	searchDatabase(search = document.getElementById("send").value);
 }
 
+function sortBy(newSort)
+{
+	let oldSort = document.getElementById("sort");
+	oldSort.removeAttribute("id");
+	let temp = oldSort.innerHTML.split(" ");
+	
+	if (temp.length == 2)
+	{
+		oldSort.innerHTML = temp[0];
+	}
+	else
+	{
+		oldSort.innerHTML = temp[0] + " " + temp[1];
+	}
+
+	let element;
+
+	switch(newSort)
+	{
+		case "FirstName":
+			element = document.querySelector(".sort-first");
+			element.setAttribute("id", "sort");
+			temp = element.innerHTML.split(" ");
+			element.innerHTML = temp[0] + " " + temp[1] + " ▼";
+			break;
+		case "LastName":
+			element = document.querySelector(".sort-last");
+			element.setAttribute("id", "sort");
+			temp = element.innerHTML.split(" ");
+			element.innerHTML = temp[0] + " " + temp[1] + " ▼";
+			break;
+		case "PhoneNumber":
+			element = document.querySelector(".sort-phone");
+			element.setAttribute("id", "sort");
+			temp = element.innerHTML.split(" ");
+			element.innerHTML = temp[0] + " " + temp[1] + " ▼";
+			break;
+		default:
+			element = document.querySelector(".sort-email");
+			element.setAttribute("id", "sort");
+			temp = element.innerHTML.split(" ");
+			element.innerHTML = temp[0]  + " ▼";
+	}
+
+	searchUser();
+}
+
 function searchDatabase(search)
 {
 	document.getElementById("contacts").innerHTML = "";
+	let sortElement = document.getElementById("sort");
+	let sort = "";
 
-	if (search == "")
+	if (sortElement.classList.contains("sort-first"))
 	{
-		search = "/all";
+		sort = "FirstName";
+	}
+	else if (sortElement.classList.contains("sort-last"))
+	{
+		sort = "LastName";
+	}
+	else if (sortElement.classList.contains("sort-phone"))
+	{
+		sort = "PhoneNumber";
+	}
+	else
+	{
+		sort = "Email";
 	}
 
-	let tmp = {UserID:userId,search:search};
+	let tmp = {UserID:userId,search:search,sort:sort};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/PhonebookSearch.' + extension;
@@ -127,6 +186,7 @@ function openPopup(row)
 	if (row != null)
 	{
 		parseRow();
+		document.getElementById("title").innerHTML = "Edit a user";
 		document.getElementById("add-button").style.display = "none";
 		document.getElementById("edit-button").style.display = "";
 		document.getElementById("remove-button").style.display = "";
@@ -145,6 +205,7 @@ function openPopup(row)
 	}
 	else
 	{
+		document.getElementById("title").innerHTML = "Add a user";
 		document.getElementById("add-button").style.display = "";
 		document.getElementById("edit-button").style.display = "none";
 		document.getElementById("remove-button").style.display = "none";
@@ -168,10 +229,10 @@ function openPopup(row)
 
 	function updateData()
 	{
-		document.getElementById("first-name").innerHTML = firstName;
-		document.getElementById("last-name").innerHTML = lastName;
-		document.getElementById("phone-number").innerHTML = phoneNumber;
-		document.getElementById("email").innerHTML = email;
+		document.getElementById("first-name").value = firstName;
+		document.getElementById("last-name").value = lastName;
+		document.getElementById("phone-number").value = phoneNumber;
+		document.getElementById("email").value = email;
 
 		localStorage.setItem("firstName", firstName);
 		localStorage.setItem("lastName", lastName);
@@ -209,5 +270,4 @@ function getFavorite(firstName, lastName, phoneNumber, email, callback)
 		document.getElementById("loginResult").innerHTML = err.message;
 	}
 }
-
 
