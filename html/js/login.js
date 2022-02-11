@@ -47,8 +47,9 @@ function doLogin()
 				lastName = jsonObject.lastName;
 
 				saveCookie();
+				window.location.href = "search.html";
 	
-				openLogin();
+				
 			}
 		};
 		xhr.send(jsonPayload);
@@ -84,7 +85,7 @@ function doRegister()
 			{
 				if (this.readyState == 4 && this.status == 200) {
 					saveCookie();
-					window.location.href = "/login.html";
+					openLogin();
 				}
 			};
 		xhr.send(jsonPayload);
