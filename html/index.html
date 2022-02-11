@@ -4,18 +4,58 @@
 	<meta charset="utf-8">
 	<title>Phonebook</title>
 	<link href="phonebook.css" rel="stylesheet" type="text/css">
+    <link href="loginstyle.css" rel="stylesheet" type="text/css" />  
+    <link href="registerstyle.css" rel="stylesheet" type="text/css" /> 
+    <script type="text/javascript" src="js/login.js"></script>
 </head>
 
 <body>
 	<div id="navbar">
 		<div id="navbarright">
-			<div id="button"><a href="login.html">Sign In</a></div>
+			<div id="button" onclick="openLogin()">Sign In</div>
+            <div class="login-popup" id="LoginPage">
+                <div class = "animate">
+                    <div id="loginBackground">
+                        <button  class="buttonlogin" onclick="openLogin()">Login Here</button> <button  class="buttonreg" onclick="openRegister()">Register Here</button> 
+                        <h1 id = "logintitle">Login Page</h1> 
+                        <p class = "iconcenter">
+                        <img src="https://icons-for-free.com/iconfiles/png/512/business+human+person+profile+seo+user+icon-1320186746402784223.png">
+                        </p>
+                        <h4 id = "displaytext">Username</h4>
+                        <input type="username" id="username" placeholder="Enter Username" />
+                        <h4 id = "displaytext">Password</h4>
+                        <input type="password" id="password" placeholder="Enter Password"/>
+                        <button type="button" id="loginsize" class="buttons" onclick="doLogin();"> Login </button>
+                        <span id="loginResult"></span>
+                        <button type="button" id="loginsize" class="buttons" onclick="closeLogin()">Close</button>
+                        <button class="closebutton" onclick="closeLogin()">X</button>
+                    </div>
+                </div>
+            </div>
+            <div class="register-popup" id="RegisterPage">
+                <div id="registerBackground">
+                    <button  class="buttonlogin" onclick="openLogin()">Login Here</button> <button  class="buttonreg" onclick="openRegister()">Register Here</button>
+                    <h1 id = "registertitle">Register Page</h1>
+                    <h3 id = "entertext">Enter First Name</h3>
+                    <input type="firstname" id="firstname"/>
+                    <h3 id = "entertext">Enter Last Name</h3>
+                    <input type="lastname" id="lastname"/>
+                    <h3 id = "entertext">Enter Username</h3>
+                    <input type="regusername" id="regusername"/>
+                    <h3 id = "entertext">Enter Password</h3>
+                    <input type="regpassword" id="regpassword"/>
+                    <button type="button" id="loginsize" class="buttons" onclick="doRegister();"> Register </button>
+                    <span id="regResult"></span>
+                    <button type="button" id="loginsize" class="buttons" onclick="closeRegister()">Close</button>
+                    <button class="closebutton" onclick="closeRegister()">X</button>
+                </div>
+            </div>
 		</div>
 	</div>
 	
 	<div id="positiom-middle-wrapper">
 	<div id="position-middle">
-		<h1>Welcome to Phonebook Pro</h1>
+		<h1 id="Welcome">Welcome to Phonebook Pro</h1>
 	</div>
 	</div>
 </body>

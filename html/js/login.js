@@ -48,7 +48,7 @@ function doLogin()
 
 				saveCookie();
 	
-				window.location.href = "search.html";
+				openLogin();
 			}
 		};
 		xhr.send(jsonPayload);
@@ -136,6 +136,35 @@ function readCookie()
 		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
 }
-
-
+function openLogin() {
+	document.getElementById('positiom-middle-wrapper').style.display="none";
+	document.getElementById('position-middle').style.display="none";
+	document.getElementById('Welcome').style.display="none";
+	document.getElementById('LoginPage').style.display="block";
+	document.getElementById('RegisterPage').style.display="none";
+}
+function closeLogin() {
+	document.getElementById('positiom-middle-wrapper').style.display="block";
+	document.getElementById('position-middle').style.display="block";
+	document.getElementById('Welcome').style.display="block";
+	document.getElementById('LoginPage').style.display="none";
+	document.getElementById('RegisterPage').style.display="none";
+	
+}
+function openRegister() {
+	document.getElementById('positiom-middle-wrapper').style.display="none";
+	document.getElementById('position-middle').style.display="none";
+	document.getElementById('Welcome').style.display="none";
+	document.getElementById('LoginPage').style.display="none";
+	document.getElementById('RegisterPage').style.display="block";
+	
+}
+function closeRegister() {
+	document.getElementById('positiom-middle-wrapper').style.display="block";
+	document.getElementById('position-middle').style.display="block";
+	document.getElementById('Welcome').style.display="block";
+	document.getElementById('LoginPage').style.display="none";
+	document.getElementById('RegisterPage').style.display="none";
+	
+}
 
