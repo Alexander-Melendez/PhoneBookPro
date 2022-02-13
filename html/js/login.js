@@ -68,6 +68,14 @@ function doRegister()
 	let login = document.getElementById("regusername").value;
 	let password = document.getElementById("regpassword").value;
 //	var hash = md5( password );
+	if(login.length < 5) {
+		document.getElementById("regResult").innerHTML = "Username must be at least 5 characters";
+		return;
+	}
+	if(password.length < 5) {
+		document.getElementById("regResult").innerHTML = "Password must be at least 5 characters";
+		return;
+	}
 	
 	document.getElementById("regResult").innerHTML = "";
 
@@ -84,6 +92,12 @@ function doRegister()
 		xhr.onreadystatechange = function() 
 			{
 				if (this.readyState == 4 && this.status == 200) {
+					let jsonObject = JSON.parse( xhr.responseText );
+					error = jsonObject.error;
+					if(error != "") {
+						document.getElementById("regResult").innerHTML = "Username already exists";
+						return;
+					}
 					saveCookie();
 					openLogin();
 				}
@@ -168,4 +182,3 @@ function closeRegister() {
 	document.getElementById('RegisterPage').style.display="none";
 	
 }
-
