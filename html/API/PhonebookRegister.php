@@ -13,10 +13,10 @@
 	} 
 	else
 	{
-        $srch = $conn->prepare("SELECT * FROM Users WHERE Login=?");
-		$srch->bind_param("s", $login);
-		$srch->execute();
-		$result = $srch->get_result();
+        $search = $conn->prepare("SELECT * FROM Users WHERE Login=?");
+		$search->bind_param("s", $login);
+		$search->execute();
+		$result = $search->get_result();
 
 		if($result->fetch_assoc() )
 		{
@@ -31,7 +31,7 @@
             $conn->close();
             returnWithError("");
 		}
-		$srch->close();
+		$search->close();
 	}
 
 	function getRequestInfo()
