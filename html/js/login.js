@@ -68,12 +68,19 @@ function doRegister()
 	let login = document.getElementById("regusername").value;
 	let password = document.getElementById("regpassword").value;
 	var hash = md5( password );
+
+	let logintest = document.getElementById("regusername");
+	let passwordtest = document.getElementById("regpassword");
+	logintest.classList.remove('error');
+	passwordtest.classList.remove('error');
 	if(login.length < 5) {
 		document.getElementById("regResult").innerHTML = "Username must be at least 5 characters";
+		logintest.classList.add('error');
 		return;
 	}
 	if(password.length < 5) {
 		document.getElementById("regResult").innerHTML = "Password must be at least 5 characters";
+		passwordtest.classList.add('error');
 		return;
 	}
 	
@@ -151,12 +158,21 @@ function readCookie()
 		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
 }
+function openLoginA() {
+	document.getElementById('positiom-middle-wrapper').style.display="none";
+	document.getElementById('position-middle').style.display="none";
+	document.getElementById('Welcome').style.display="none";
+	document.getElementById('LoginPage').style.display="block";
+	document.getElementById('RegisterPage').style.display="none";
+	document.getElementById('animate').style.animation="animatezoom 0.3s";
+}
 function openLogin() {
 	document.getElementById('positiom-middle-wrapper').style.display="none";
 	document.getElementById('position-middle').style.display="none";
 	document.getElementById('Welcome').style.display="none";
 	document.getElementById('LoginPage').style.display="block";
 	document.getElementById('RegisterPage').style.display="none";
+	document.getElementById('animate').style.animation="none";
 }
 function closeLogin() {
 	document.getElementById('positiom-middle-wrapper').style.display="block";
@@ -164,6 +180,7 @@ function closeLogin() {
 	document.getElementById('Welcome').style.display="block";
 	document.getElementById('LoginPage').style.display="none";
 	document.getElementById('RegisterPage').style.display="none";
+	document.getElementById('animate').style.animation="none";
 	
 }
 function openRegister() {
@@ -172,7 +189,7 @@ function openRegister() {
 	document.getElementById('Welcome').style.display="none";
 	document.getElementById('LoginPage').style.display="none";
 	document.getElementById('RegisterPage').style.display="block";
-	
+	document.getElementById('animate').style.animation="none";
 }
 function closeRegister() {
 	document.getElementById('positiom-middle-wrapper').style.display="block";
@@ -180,5 +197,5 @@ function closeRegister() {
 	document.getElementById('Welcome').style.display="block";
 	document.getElementById('LoginPage').style.display="none";
 	document.getElementById('RegisterPage').style.display="none";
-	
+	document.getElementById('animate').style.animation="none";
 }

@@ -13,9 +13,9 @@
 <body>
 	<div id="navbar">
 		<div id="navbarright">
-			<div id="button" onclick="openLogin()">Sign In</div>
+			<div id="button" onclick="openLoginA()">Sign In</div>
             <div class="login-popup" id="LoginPage">
-                <div class = "animate">
+                <div class = "animate" id = "animate">
                     <div id="loginBackground">
                         <button  class="buttonlogin" onclick="openLogin()">Login Here</button> <button  class="buttonreg" onclick="openRegister()">Register Here</button> 
                         <h1 id = "logintitle">Login Page </br></br></h1> 
@@ -23,7 +23,7 @@
                         <img src="https://icons-for-free.com/iconfiles/png/512/business+human+person+profile+seo+user+icon-1320186746402784223.png">
                         </p>
                         <h4 id = "displaytext">Username</h4>
-                        <input type="username" id="username" placeholder="Enter Username" />
+                        <input type="text" id="username" placeholder="Enter Username" />
                         <h4 id = "displaytext">Password</h4>
                         <input type="password" id="password" placeholder="Enter Password"/>
                         <span class ="spandisplay" id="loginResult"></span>
@@ -38,13 +38,13 @@
                     <button  class="buttonlogin" onclick="openLogin()">Login Here</button> <button  class="buttonreg" onclick="openRegister()">Register Here</button>
                     <h1 id = "registertitle">Register Page</h1>
                     <h3 id = "entertext">Enter First Name</h3>
-                    <input type="firstname" id="firstname"/>
+                    <input type="text" id="firstname"/>
                     <h3 id = "entertext">Enter Last Name</h3>
-                    <input type="lastname" id="lastname"/>
+                    <input type="text" id="lastname"/>
                     <h3 id = "entertext">Enter Username</h3>
-                    <input type="regusername" id="regusername"/>
+                    <input type="text" id="regusername"/>
                     <h3 id = "entertext">Enter Password</h3>
-                    <input type="regpassword" id="regpassword"/>
+                    <input type="password" id="regpassword"/>
                     <span class = "spandisplay" id="regResult"></span>
                     <button type="button" id="loginsize" class="buttons" onclick="doRegister();"> Register </button>
                     <button type="button" id="loginsize" class="buttons" onclick="closeRegister()">Close</button>
