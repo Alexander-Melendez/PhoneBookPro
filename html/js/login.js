@@ -13,12 +13,12 @@ function doLogin()
 	
 	let login = document.getElementById("username").value;
 	let password = document.getElementById("password").value;
-//	var hash = md5( password );
+	var hash = md5( password );
 	
 	document.getElementById("loginResult").innerHTML = "";
 
-	let tmp = {login:login,password:password};
-//	var tmp = {login:login,password:hash};
+	//let tmp = {login:login,password:password};
+	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
 	let url = urlBase + '/PhonebookLogin.' + extension;
@@ -67,7 +67,7 @@ function doRegister()
 	let lastname = document.getElementById("lastname").value;
 	let login = document.getElementById("regusername").value;
 	let password = document.getElementById("regpassword").value;
-//	var hash = md5( password );
+	var hash = md5( password );
 	if(login.length < 5) {
 		document.getElementById("regResult").innerHTML = "Username must be at least 5 characters";
 		return;
@@ -79,8 +79,8 @@ function doRegister()
 	
 	document.getElementById("regResult").innerHTML = "";
 
-	let tmp = {firstName:firstname,lastName:lastname,login:login,password:password};
-//	var tmp = {login:login,password:hash};
+	//let tmp = {firstName:firstname,lastName:lastname,login:login,password:password};
+	let tmp = {firstName:firstname,lastName:lastname,login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
 	let url = urlBase + '/PhonebookRegister.' + extension;
 
