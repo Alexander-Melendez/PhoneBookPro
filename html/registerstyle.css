@@ -1,4 +1,3 @@
-
 #registertitle
 {
   text-align: center;
@@ -42,7 +41,7 @@
 }
 
 
-input[type="firstname"],input[type="lastname"],input[type="regusername"],input[type="regpassword"]{
+input[type="text"], input[type="password"]{
   width: 100%;
   padding: 12px 20px;
   margin: 6px 0;
@@ -98,13 +97,15 @@ input[type="firstname"],input[type="lastname"],input[type="regusername"],input[t
   cursor: pointer;
 }
 
+.error {
+  animation: shake .2s linear;
+  animation-iteration-count: 4;
+  box-shadow: 0 0 1em #d34b52;
+}
 
-
-
-
-
-
-
-
-
-
+@keyframes shake {
+  0% { margin-left: 0rem; }
+  25% { margin-left: 0.5rem; }
+  75% { margin-left: -0.5rem; }
+  100% { margin-left: 0rem; }
+}
