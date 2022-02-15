@@ -52,8 +52,8 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
-          "name" : "contactItem",
-          "description" : "Contact",
+          "name" : "addContactItem",
+          "description" : "Contact Add",
           "schema" : {
             "$ref" : "#/definitions/Contact"
           }
@@ -104,8 +104,8 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
-          "name" : "contactItem",
-          "description" : "Contact",
+          "name" : "searchContactItem",
+          "description" : "Search Contact",
           "schema" : {
             "$ref" : "#/definitions/Search"
           }
@@ -130,8 +130,8 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
-          "name" : "contactItem",
-          "description" : "Contact",
+          "name" : "editContactItem",
+          "description" : "Edit Contact",
           "schema" : {
             "$ref" : "#/definitions/Contact"
           }
@@ -156,8 +156,8 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
-          "name" : "contactItem",
-          "description" : "Contact",
+          "name" : "removeContactItem",
+          "description" : "Remove Contact",
           "schema" : {
             "$ref" : "#/definitions/Contact"
           }
@@ -175,17 +175,17 @@
     "/PhoneBookFavorite.php" : {
       "post" : {
         "tags" : [ "Contacts" ],
-        "summary" : "Removes a contact",
+        "summary" : "Favorites a contact",
         "operationId" : "favoriteContact",
-        "description" : "Removes a contact in the phonebookpro app database under a user",
+        "description" : "Favorites a contact in the phonebookpro app database under a user",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
-          "name" : "contactItem",
-          "description" : "Contact",
+          "name" : "favoriteContactItem",
+          "description" : "Favorite Contact",
           "schema" : {
-            "$ref" : "#/definitions/Contact"
+            "$ref" : "#/definitions/ContactFav"
           }
         } ],
         "responses" : {
@@ -201,15 +201,15 @@
     "/PhonebookIsFavorite.php" : {
       "post" : {
         "tags" : [ "Contacts" ],
-        "summary" : "Removes a contact",
+        "summary" : "Checks for favorited contact",
         "operationId" : "isFavoriteContact",
-        "description" : "Removes a contact in the phonebookpro app database under a user",
+        "description" : "Checks a favorite contact in the phonebookpro app database under a user",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
-          "name" : "contactItem",
-          "description" : "Contact",
+          "name" : "isFavoriteContactItem",
+          "description" : "isFavorite Contact",
           "schema" : {
             "$ref" : "#/definitions/Contact"
           }
@@ -263,6 +263,32 @@
       }
     },
     "Contact" : {
+      "type" : "object",
+      "required" : [ "UserID", "FirstName", "LastName", "PhoneNumber", "Email" ],
+      "properties" : {
+        "FirstName" : {
+          "type" : "string",
+          "example" : "John"
+        },
+        "LastName" : {
+          "type" : "string",
+          "example" : "Doe"
+        },
+        "PhoneNumber" : {
+          "type" : "string",
+          "example" : "4078492444"
+        },
+        "Email" : {
+          "type" : "string",
+          "example" : "jdoe@yahoo.com"
+        },
+        "UserID" : {
+          "type" : "integer",
+          "example" : 1
+        }
+      }
+    },
+    "ContactFav" : {
       "type" : "object",
       "required" : [ "UserID", "FirstName", "LastName", "PhoneNumber", "Email" ],
       "properties" : {
