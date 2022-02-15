@@ -177,7 +177,7 @@ function openPopup(row)
 {
 	let popup = document.getElementById("popup");
 	popup.style.display = "flex";
-	document.getElementById("popup").style.animation="animatezoom 0.3s";
+	document.getElementById("center").style.animation="animatezoom 0.3s";
 
 	var firstName = "";
 	var lastName = "";

@@ -159,43 +159,41 @@ function readCookie()
 	}
 }
 function openLoginA() {
-	document.getElementById('positiom-middle-wrapper').style.display="none";
 	document.getElementById('position-middle').style.display="none";
+	document.getElementById('popup').style.display="flex";
 	document.getElementById('Welcome').style.display="none";
-	document.getElementById('LoginPage').style.display="block";
+	document.getElementById('LoginPage').style.display="";
 	document.getElementById('RegisterPage').style.display="none";
-	document.getElementById('animate').style.animation="animatezoom 0.3s";
+	document.getElementById('center').style.animation="animatezoom 0.3s";
 }
 function openLogin() {
-	document.getElementById('positiom-middle-wrapper').style.display="none";
 	document.getElementById('position-middle').style.display="none";
 	document.getElementById('Welcome').style.display="none";
-	document.getElementById('LoginPage').style.display="block";
+	document.getElementById('LoginPage').style.display="";
 	document.getElementById('RegisterPage').style.display="none";
-	document.getElementById('animate').style.animation="none";
+	document.getElementById('center').style.animation="none";
 }
 function closeLogin() {
-	document.getElementById('positiom-middle-wrapper').style.display="block";
-	document.getElementById('position-middle').style.display="block";
-	document.getElementById('Welcome').style.display="block";
+	document.getElementById('position-middle').style.display="";
+	document.getElementById('popup').style.display="none";
+	document.getElementById('Welcome').style.display="";
 	document.getElementById('LoginPage').style.display="none";
 	document.getElementById('RegisterPage').style.display="none";
-	document.getElementById('animate').style.animation="none";
+	document.getElementById('center').style.animation="none";
 	
 }
 function openRegister() {
-	document.getElementById('positiom-middle-wrapper').style.display="none";
 	document.getElementById('position-middle').style.display="none";
 	document.getElementById('Welcome').style.display="none";
 	document.getElementById('LoginPage').style.display="none";
-	document.getElementById('RegisterPage').style.display="block";
-	document.getElementById('animate').style.animation="none";
+	document.getElementById('RegisterPage').style.display="";
+	document.getElementById('center').style.animation="none";
 }
 function closeRegister() {
-	document.getElementById('positiom-middle-wrapper').style.display="block";
-	document.getElementById('position-middle').style.display="block";
-	document.getElementById('Welcome').style.display="block";
+	document.getElementById('position-middle').style.display="";
+	document.getElementById('popup').style.display="none";
+	document.getElementById('Welcome').style.display="";
 	document.getElementById('LoginPage').style.display="none";
 	document.getElementById('RegisterPage').style.display="none";
-	document.getElementById('animate').style.animation="none";
+	document.getElementById('center').style.animation="none";
 }

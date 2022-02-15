@@ -4,60 +4,69 @@
 	<meta charset="utf-8">
 	<title>Phonebook</title>
 	<link href="phonebook.css" rel="stylesheet" type="text/css">
-    <link href="loginstyle.css" rel="stylesheet" type="text/css" />  
-    <link href="registerstyle.css" rel="stylesheet" type="text/css" /> 
+    <link href="loginstyle.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="js/login.js"></script>
     <script type="text/javascript" src="js/md5.js"></script>
 </head>
 
 <body>
-	<div id="navbar">
-		<div id="navbarright">
-			<div id="button" onclick="openLoginA()">Sign In</div>
+    <div id="popup">
+        <div id="center" class="center">
+            <div class="align-right">
+				<div class="exit">
+					<button id="close-button" onclick = "closeLogin()">❌</button>
+				</div>
+			</div>
+
+            <div class="login-register">
+                <button class="buttonlogin" onclick="openLogin()">Login</button>
+                <button class="buttonreg" onclick="openRegister()">Register</button>
+            </div>
+
             <div class="login-popup" id="LoginPage">
-                <div class = "animate" id = "animate">
-                    <div id="loginBackground">
-                        <button  class="buttonlogin" onclick="openLogin()">Login Here</button> <button  class="buttonreg" onclick="openRegister()">Register Here</button> 
-                        <h1 id = "logintitle">Login Page </br></br></h1> 
-                        <p class = "iconcenter">
-                        <img src="https://icons-for-free.com/iconfiles/png/512/business+human+person+profile+seo+user+icon-1320186746402784223.png">
-                        </p>
+                <div class="fields">
+                    <div class="info">
                         <h4 id = "displaytext">Username</h4>
                         <input type="text" id="username" placeholder="Enter Username" />
+                    </div>
+                    <div class="info">
                         <h4 id = "displaytext">Password</h4>
                         <input type="password" id="password" placeholder="Enter Password"/>
-                        <span class ="spandisplay" id="loginResult"></span>
-                        <button type="button" id="loginsize" class="buttons" onclick="doLogin();"> Login </button>
-                        <button type="button" id="loginsize" class="buttons" onclick="closeLogin()">Close</button>
-                        <button class="closebutton" onclick="closeLogin()">X</button>
                     </div>
+                    <span class ="spandisplay" id="loginResult"></span>
                 </div>
+                <button type="button" class="go" onclick="doLogin()">Login</button>
             </div>
+
             <div class="register-popup" id="RegisterPage">
-                <div id="registerBackground">
-                    <button  class="buttonlogin" onclick="openLogin()">Login Here</button> <button  class="buttonreg" onclick="openRegister()">Register Here</button>
-                    <h1 id = "registertitle">Register Page</h1>
-                    <h3 id = "entertext">Enter First Name</h3>
-                    <input type="text" id="firstname"/>
-                    <h3 id = "entertext">Enter Last Name</h3>
-                    <input type="text" id="lastname"/>
-                    <h3 id = "entertext">Enter Username</h3>
-                    <input type="text" id="regusername"/>
-                    <h3 id = "entertext">Enter Password</h3>
-                    <input type="password" id="regpassword"/>
+                <div class="fields">
+                    <div class="info">
+                        <h4 id ="entertext">Enter First Name</h4>
+                        <input type="text" id="firstname"/>
+                    </div>
+                    <div class="info">
+                        <h4 id ="entertext">Enter Last Name</h4>
+                        <input type="text" id="lastname"/>
+                    </div>
+                    <div class="info">
+                        <h4 id ="entertext">Enter Username</h4>
+                        <input type="text" id="regusername"/>
+                    </div>
+                    <div class="info">
+                        <h4 id ="entertext">Enter Password</h4>
+                        <input type="password" id="regpassword"/>
+                    </div>
                     <span class = "spandisplay" id="regResult"></span>
-                    <button type="button" id="loginsize" class="buttons" onclick="doRegister();"> Register </button>
-                    <button type="button" id="loginsize" class="buttons" onclick="closeRegister()">Close</button>
-                    <button class="closebutton" onclick="closeRegister()">X</button>
                 </div>
+                <button type="button" class="go" onclick="doRegister()">Register</button>
             </div>
-		</div>
-	</div>
+        </div>
+    </div>
+
+    <button id="button" onclick="openLoginA()">Sign In</button>
 	
-	<div id="positiom-middle-wrapper">
-	<div id="position-middle">
-		<h1 id="Welcome">Welcome to Phonebook Pro</h1>
-	</div>
-	</div>
+    <div id="position-middle">
+        <h1 id="Welcome">Welcome to Phonebook Pro</h1>
+    </div>
 </body>
 </html>

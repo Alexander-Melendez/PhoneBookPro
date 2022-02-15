@@ -103,13 +103,10 @@ function remove() {
 	let title = document.getElementById("title");
 	title.style.display = "none";
 
-	let error = document.getElementById("error");
-	error.style.display = "";
-
 	let popup = document.getElementById("center");
 	popup.style.height = "20vh";
 
-	let div = document.createElement("div");
+	let error = document.getElementById("error");
 	error.style.display = "";
 	error.style.color = "#ff0000";
 	error.innerHTML = "Are you sure you want to delete?"
@@ -159,6 +156,7 @@ function removeCancel()
 	popup.style.height = "60vh";
 
 	let error = document.getElementById("error");
+	error.style.display = "none";
 	error.innerHTML = "";
 
 	document.getElementById("close-button").style.display = "";

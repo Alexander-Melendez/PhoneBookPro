@@ -5,7 +5,6 @@
 	margin: 0;
 }
 
-
 #popup{
     font-family: 'Montserrat', Verdana, sans-serif;
 	  width: 100vw;
@@ -51,11 +50,11 @@
 }
 
 #popup .form-button:hover{
-  background-color: #151515;
+  background-color: #acacac;
 }
 
 #popup button:hover{
-  background-color: #151515;
+  background-color: #acacac;
 }
 
 #popup .align-right{
