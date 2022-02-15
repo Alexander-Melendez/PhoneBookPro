@@ -78,10 +78,10 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
-          "name" : "contactItem",
-          "description" : "Contact",
+          "name" : "userRegisterItem",
+          "description" : "RegisterUser",
           "schema" : {
-            "$ref" : "#/definitions/Contact"
+            "$ref" : "#/definitions/Register"
           }
         } ],
         "responses" : {
@@ -226,9 +226,31 @@
     }
   },
   "definitions" : {
+    "Register" : {
+      "type" : "object",
+      "required" : [ "FirstName", "LastName", "Login", "Password" ],
+      "properties" : {
+        "FirstName" : {
+          "type" : "string",
+          "example" : "John"
+        },
+        "LastName" : {
+          "type" : "string",
+          "example" : "Doe"
+        },
+        "login" : {
+          "type" : "string",
+          "example" : "SamH"
+        },
+        "password" : {
+          "type" : "string",
+          "example" : "test"
+        }
+      }
+    },
     "Login" : {
       "type" : "object",
-      "required" : [ "login", "password" ],
+      "required" : [ "Login", "Password" ],
       "properties" : {
         "login" : {
           "type" : "string",
