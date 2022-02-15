@@ -290,7 +290,7 @@
     },
     "Search" : {
       "type" : "object",
-      "required" : [ "UserID", "Search" ],
+      "required" : [ "UserID", "Search", "Sort" ],
       "properties" : {
         "UserID" : {
           "type" : "string",
@@ -299,6 +299,10 @@
         "Search" : {
           "type" : "string",
           "example" : "Susie"
+        },
+        "Sort" : {
+          "type" : "string",
+          "example" : "FirstName"
         }
       }
     }
