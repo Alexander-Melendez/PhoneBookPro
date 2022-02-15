@@ -79,6 +79,12 @@ function updateAsync(callback)
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				let json = JSON.parse( xhr.responseText );
+
+				localStorage.setItem("firstName", firstName);
+				localStorage.setItem("lastName", lastName);
+				localStorage.setItem("phoneNumber", phoneNumber);
+				localStorage.setItem("email", email);
+
 				callback(json);
 			}
 		};
@@ -104,9 +110,9 @@ function remove() {
 	popup.style.height = "20vh";
 
 	let div = document.createElement("div");
-	div.innerHTML = "Are you sure you want to delete?";
-
-	error.appendChild(div);
+	error.style.display = "";
+	error.style.color = "#ff0000";
+	error.innerHTML = "Are you sure you want to delete?"
 
 	document.getElementById("close-button").style.display = "none";
 	document.getElementById("edit-button").style.display = "none";

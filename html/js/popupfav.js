@@ -79,6 +79,12 @@ function updateAsync(callback)
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				let json = JSON.parse( xhr.responseText );
+
+				localStorage.setItem("firstName", firstName);
+				localStorage.setItem("lastName", lastName);
+				localStorage.setItem("phoneNumber", phoneNumber);
+				localStorage.setItem("email", email);
+
 				callback(json);
 			}
 		};
@@ -102,6 +108,7 @@ function remove() {
 
 	let error = document.getElementById("error");
 	error.style.display = "";
+	error.style.color = "#ff0000";
 	error.innerHTML = "Are you sure you want to delete?"
 
 	document.getElementById("close-button").style.display = "none";
