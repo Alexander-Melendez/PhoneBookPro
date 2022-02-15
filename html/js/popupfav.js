@@ -34,50 +34,59 @@ function submit()
 	}
 }
 
-// Updates database.
 function update()
+{
+	updateAsync(function (json) {
+		let error = document.getElementById("error");
+		error.innerHTML = json.error;
+		error.style.display = "";
+
+		if (json.error == "Contact updated")
+		{
+			error.style.color = "#63a66e";
+			checkUser("/fav");
+		}
+	});
+}
+
+// Updates database.
+function updateAsync(callback)
 {
 	var firstName = document.getElementById("first-name").value;
 	var lastName = document.getElementById("last-name").value;
-  var phoneNumber = document.getElementById("phone-number").value;
+  	var phoneNumber = document.getElementById("phone-number").value;
 	var email = document.getElementById("email").value;
 
-  let search = e;
-	document.getElementById("result").innerHTML = "";
+	var firstNameOld = localStorage.getItem("firstName");
+	var lastNameOld = localStorage.getItem("lastName");
+  	var phoneNumberOld = localStorage.getItem("phoneNumber");
+	var emailOld = localStorage.getItem("email");
 
-	let tmp = {search:search,userId:userId};
+	var userId = localStorage.getItem("userId");
+
+	let tmp = {FirstName:firstName,LastName:lastName,PhoneNumber:phoneNumber,Email:email,FirstNameOld:firstNameOld,LastNameOld:lastNameOld,PhoneNumberOld:phoneNumberOld,EmailOld:emailOld,UserID:userId,};
 	let jsonPayload = JSON.stringify( tmp );
 
-	let url = urlBase + '/PhonebookSearch.' + extension;
+	let url = urlBase + '/PhonebookEdit.' + extension;
 	
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try
 	{
-    xhr.send(jsonPayload);
 		xhr.onreadystatechange = function() 
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				let json = JSON.parse( xhr.responseText );
-				
-				for( let i=0; i<json.results.length; i++ )
-				{
-					list += json.results[i];
-					if( i < json.results.length - 1 )
-					{
-						list += "<br />\r\n";
-					}
-				}
-				
-				document.getElementById("result").innerHTML = list;
+				callback(json);
 			}
 		};
+		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("colorSearchResult").innerHTML = err.message;
+		document.getElementById("error").innerHTML = err.message;
 	}
 }
 
@@ -263,6 +272,7 @@ function closePopup()
 	let error = document.getElementById("error");
 	error.innerHTML = "";
 	error.style.display = "none";
+	error.style.color = "#ff0000";
 	let popup = document.getElementById("popup");
 	popup.style.display = "none";
 }

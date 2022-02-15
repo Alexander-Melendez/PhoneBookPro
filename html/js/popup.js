@@ -34,47 +34,55 @@ function submit()
 	}
 }
 
-// Updates database.
 function update()
 {
-	alert("Mayday");
-	var firstName = document.getElementById("first-name").innerHTML;
-	var lastName = document.getElementById("last-name").innerHTML;
-  	var phoneNumber = document.getElementById("phone-number").innerHTML;
-	var email = document.getElementById("email").innerHTML;
+	updateAsync(function (json) {
+		let error = document.getElementById("error");
+		error.innerHTML = json.error;
+		error.style.display = "";
 
-  let search = e;
-	document.getElementById("result").innerHTML = "";
+		if (json.error == "Contact updated")
+		{
+			error.style.color = "#63a66e";
+			checkUser("/all");
+		}
+	});
+}
 
-	let tmp = {search:search,userId:userId};
+// Updates database.
+function updateAsync(callback)
+{
+	var firstName = document.getElementById("first-name").value;
+	var lastName = document.getElementById("last-name").value;
+  	var phoneNumber = document.getElementById("phone-number").value;
+	var email = document.getElementById("email").value;
+
+	var firstNameOld = localStorage.getItem("firstName");
+	var lastNameOld = localStorage.getItem("lastName");
+  	var phoneNumberOld = localStorage.getItem("phoneNumber");
+	var emailOld = localStorage.getItem("email");
+
+	var userId = localStorage.getItem("userId");
+
+	let tmp = {FirstName:firstName,LastName:lastName,PhoneNumber:phoneNumber,Email:email,FirstNameOld:firstNameOld,LastNameOld:lastNameOld,PhoneNumberOld:phoneNumberOld,EmailOld:emailOld,UserID:userId,};
 	let jsonPayload = JSON.stringify( tmp );
 
-	let url = urlBase + '/PhonebookSearch.' + extension;
+	let url = urlBase + '/PhonebookEdit.' + extension;
 	
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try
 	{
-    xhr.send(jsonPayload);
 		xhr.onreadystatechange = function() 
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				let json = JSON.parse( xhr.responseText );
-				
-				for( let i=0; i<json.results.length; i++ )
-				{
-					list += json.results[i];
-					if( i < json.results.length - 1 )
-					{
-						list += "<br />\r\n";
-					}
-				}
-				
-				document.getElementById("result").innerHTML = list;
+				callback(json);
 			}
 		};
+		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
@@ -128,7 +136,7 @@ function removeCancel()
 {
 	var firstName = localStorage.getItem("firstName");
 	var lastName = localStorage.getItem("lastName");
-  var phoneNumber = localStorage.getItem("phoneNumber");
+  	var phoneNumber = localStorage.getItem("phoneNumber");
 	var email = localStorage.getItem("email");
 
 	let features = document.getElementById("features");
@@ -328,8 +336,10 @@ function closePopup()
 	let error = document.getElementById("error");
 	error.innerHTML = "";
 	error.style.display = "none";
+	error.style.color = "#ff0000";
   	let popup = document.getElementById("popup");
 	popup.style.display = "none";
+	
 }
 
 function getFavorite(firstName, lastName, phoneNumber, email, callback)

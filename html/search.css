@@ -186,11 +186,6 @@ ul{
     color: #859cc2;
 }
 
-#error{
-    font-weight: bolder;
-    color: #ff0000;
-}
-
 @media only screen and (max-width:700px){
     .searchbar {
         width: 100%;
