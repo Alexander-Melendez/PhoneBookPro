@@ -290,7 +290,7 @@
     },
     "Search" : {
       "type" : "object",
-      "required" : [ "UserID", "Search", "Sort" ],
+      "required" : [ "UserID", "search", "sort" ],
       "properties" : {
         "UserID" : {
           "type" : "string",
