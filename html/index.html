@@ -19,12 +19,14 @@
 			</div>
 
             <div class="login-register">
-                <button class="buttonlogin" onclick="openLogin()">Login</button>
-                <button class="buttonreg" onclick="openRegister()">Register</button>
+                <button class="buttonlogin" id = "butlogin" onclick="openLogin()">Login</button>
+                <button class="buttonreg" id = "butreg" onclick="openRegister()">Register</button>
             </div>
 
             <div class="login-popup" id="LoginPage">
                 <div class="fields">
+                    <img src="images/icon.png" alt="icon" width="140" height="140">
+                    <p></br></p>
                     <div class="info">
                         <h4 id = "displaytext">Username</h4>
                         <input type="text" id="username" placeholder="Enter Username" />
@@ -63,7 +65,7 @@
         </div>
     </div>
 
-    <button id="button" onclick="openLoginA()">Sign In</button>
+    <button class="Signin" id="button" onclick="openLoginA()">Sign In</button>
 	
     <div id="position-middle">
         <h1 id="Welcome">Welcome to Phonebook Pro</h1>

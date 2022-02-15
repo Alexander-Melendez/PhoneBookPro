@@ -165,6 +165,9 @@ function openLoginA() {
 	document.getElementById('LoginPage').style.display="";
 	document.getElementById('RegisterPage').style.display="none";
 	document.getElementById('center').style.animation="animatezoom 0.3s";
+	document.getElementById('butlogin').style.background="#4bd3aa"
+	document.getElementById("regusername").classList.remove('error');
+	document.getElementById("regpassword").classList.remove('error');
 }
 function openLogin() {
 	document.getElementById('position-middle').style.display="none";
@@ -172,6 +175,10 @@ function openLogin() {
 	document.getElementById('LoginPage').style.display="";
 	document.getElementById('RegisterPage').style.display="none";
 	document.getElementById('center').style.animation="none";
+	document.getElementById('butlogin').style.background="#4bd3aa";
+	document.getElementById('butreg').style.background="#e4e4e4";
+	document.getElementById("regusername").classList.remove('error');
+	document.getElementById("regpassword").classList.remove('error');
 }
 function closeLogin() {
 	document.getElementById('position-middle').style.display="";
@@ -179,7 +186,11 @@ function closeLogin() {
 	document.getElementById('Welcome').style.display="";
 	document.getElementById('LoginPage').style.display="none";
 	document.getElementById('RegisterPage').style.display="none";
-	document.getElementById('center').style.animation="none";
+	document.getElementById('center').style.animation="#e4e4e4";
+	document.getElementById('butlogin').style.background="#e4e4e4";
+	document.getElementById('butreg').style.background="#e4e4e4";
+	document.getElementById("regusername").classList.remove('error');
+	document.getElementById("regpassword").classList.remove('error');
 	
 }
 function openRegister() {
@@ -188,6 +199,10 @@ function openRegister() {
 	document.getElementById('LoginPage').style.display="none";
 	document.getElementById('RegisterPage').style.display="";
 	document.getElementById('center').style.animation="none";
+	document.getElementById('butreg').style.background="#4bd3aa";
+	document.getElementById('butlogin').style.background="#e4e4e4";
+	document.getElementById("regusername").classList.remove('error');
+	document.getElementById("regpassword").classList.remove('error');
 }
 function closeRegister() {
 	document.getElementById('position-middle').style.display="";
@@ -195,5 +210,10 @@ function closeRegister() {
 	document.getElementById('Welcome').style.display="";
 	document.getElementById('LoginPage').style.display="none";
 	document.getElementById('RegisterPage').style.display="none";
-	document.getElementById('center').style.animation="none";
+	document.getElementById('center').style.animation="#e4e4e4";
+	document.getElementById('butlogin').style.background="#e4e4e4";
+	document.getElementById('butreg').style.background="#e4e4e4";
+	document.getElementById("regusername").classList.remove('error');
+	document.getElementById("regpassword").classList.remove('error');
+
 }
